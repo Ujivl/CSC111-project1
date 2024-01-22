@@ -1,4 +1,4 @@
-LOCATION -1
+EMPTY -1
 0
 That way is blocked.
 That way is blocked.
@@ -16,31 +16,37 @@ brief description
 detailed description
 END
 
-LIBRARY 3
+ROOM OF SCROLLS 3
+0
+brief description
+detailed description
+END
+
+LIBRARY RECEPTION 4
+10
+brief description
+detailed description
+END
+
+QUAD 5
 5
 brief description
 detailed description
 END
 
-QUAD 4
+CAFETERIA 6
 5
 brief description
 detailed description
 END
 
-CAFETERIA 5
-5
+TTC 8
+0
 brief description
 detailed description
 END
 
-TTC 6
-5
-brief description
-detailed description
-END
-
-GYM 7
+GYM 9
 5
 brief description
 detailed description
