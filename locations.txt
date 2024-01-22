@@ -1,0 +1,47 @@
+LOCATION -1
+0
+That way is blocked.
+That way is blocked.
+END
+
+EXAM HALL 1
+5
+brief description
+detailed description
+END
+
+PROFFESSORS ROOM 2
+5
+brief description
+detailed description
+END
+
+LIBRARY 3
+5
+brief description
+detailed description
+END
+
+QUAD 4
+5
+brief description
+detailed description
+END
+
+CAFETERIA 5
+5
+brief description
+detailed description
+END
+
+TTC 6
+5
+brief description
+detailed description
+END
+
+GYM 7
+5
+brief description
+detailed description
+END
