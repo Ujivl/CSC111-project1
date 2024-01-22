@@ -1,0 +1,8 @@
+The player starts at the quad, They remember that the t-card was left at the room of scrolls in the library (west). If the player decides to go to the:  
+{prof's room: can get wisdom from prof}
+{gym: can't enter without tcard}
+{exam hall: can choose to attack the first monster, but will fail}
+{cafeteria: can't enter without tcard}
+{ttc station: has to pay 500 gold to enter, (with student discount it will be 30)}
+
+When the player enters the reception they will find a sad libarian with a giant bird cage in the background that is open. When prompted, the 
