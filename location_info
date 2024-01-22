@@ -1,0 +1,44 @@
+_The quad_
+gold: 5
+characters: N/A
+The starting area of the player, can use the map action here to tell the player where each location is.
+
+_Exam hall_
+gold: 0
+characters: 3 monsters, each needing one of the items to beat
+The area where the exam will take place
+
+_Prof's room_
+gold: 0
+characters: Sadia Sharmin, the Queen of the beasts
+In this room, Sadia can give hints to the players on what to do for each beast
+
+_Library reception_
+gold: 10 (from librarian)
+characters: librarian
+IN this room, The player can interact with the librarian find out that shes missing a "cat"
+
+_Room of scrolls_
+gold: 5
+characters: Griffin
+This room gives the t-card. But in order to leave with it, the player has to fight the griffin. The only way to beat it
+is by using the shield (t-card)
+
+_cafeteria_
+gold: 5
+characters: Giant Slime
+This room is where you get the cheat-sheet, but it is lodged inside a giant slime. The only way to beat it is by using
+the sword (pen).
+
+_ttc station_
+gold: 0
+characters: goblin
+You can go to the ttc-station to travel back in time by 30 minutes, but you need to have your t-card to use the student
+discount of 30 gold, else it is 500 gold. If you do not have the money by then, game over, if you do you can go back in
+time to start the exam.
+
+_gym_
+gold: 5
+Characters: mimic
+You can go here to access you gym locker where your pen resides, but the locker itself is a mimick gaurding your things.
+You can only stop the mimick with your t-card.
