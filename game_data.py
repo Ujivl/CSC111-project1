@@ -25,12 +25,13 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - coordinate: an x and y position the player is currently at
 
     Representation Invariants:
         - # TODO
     """
-
+    coordinate: list[int]
+    prev_place = Optional[Location] = [0, 0]
     def __init__(self) -> None:
         """Initialize a new location.
 
@@ -134,7 +135,7 @@ class World:
     Representation Invariants:
         - # TODO
     """
-
+    map: list[list]
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
