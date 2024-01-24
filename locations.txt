@@ -1,53 +1,62 @@
-EMPTY -1
-0
+-1 EMPTY
+0.0
+-1 -1
 That way is blocked.
 That way is blocked.
 END
 
-EXAM HALL 1
-5
+1 EXAM HALL
+5.0
+1 3
 brief description
 detailed description
 END
 
-PROFFESSORS ROOM 2
-0
+2 PROFFESSORS ROOM
+0.0
+1 4
 brief description
 detailed description
 END
 
-ROOM OF SCROLLS 3
-0
+3 ROOM OF SCROLLS
+0.0
+2 1
 brief description
 detailed description
 END
 
-LIBRARY RECEPTION 4
-10
+4 LIBRARY RECEPTION
+10.0
+2 2
 brief description
 detailed description
 END
 
-QUAD 5
-5
+5 QUAD
+5.0
+2 3
 brief description
 detailed description
 END
 
-CAFETERIA 6
-5
+6 CAFETERIA
+5.0
+2 4
 brief description
 detailed description
 END
 
-TTC 8
-0
+7 TTC
+0.0
+3 2
 brief description
 detailed description
 END
 
-GYM 9
-5
+8 GYM
+5.0
+3 3
 brief description
 detailed description
 END

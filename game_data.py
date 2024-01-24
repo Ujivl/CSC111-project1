@@ -31,7 +31,7 @@ class Location:
         - # TODO
     """
     coordinate: list[int]
-    prev_place = Optional[Location] = [0, 0]
+
     def __init__(self) -> None:
         """Initialize a new location.
 
@@ -136,6 +136,7 @@ class World:
         - # TODO
     """
     map: list[list]
+
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
@@ -173,8 +174,11 @@ class World:
 
         Return this list representation of the map.
         """
+        final_list = []
+        for line in map_data:
+            final_list.append([int(x) for x in line.strip().split()])
 
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+        return final_list
 
     # TODO: Add methods for loading location data and item data (see note above).
 
@@ -186,3 +190,7 @@ class World:
         """
 
         # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+
+
+w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
+print(w.map)
