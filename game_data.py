@@ -30,14 +30,20 @@ class Location:
     Representation Invariants:
         - # TODO
     """
-    coordinate: list[int]
+    name: str
+    character: Character
+    coordinates: list[int]
+    been_here: bool
+    brief_intro: str
+    long_intro: str
+    location_number: int
 
-    def __init__(self) -> None:
+    def __init__(self, coordinates: list[int], brief_intro: str, long_intro: str,) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
         """
-
+        self.coordinates = coordinates
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -55,6 +61,18 @@ class Location:
         # All locations in your game MUST be represented as an instance of this class.
 
         # TODO: Complete this method
+
+    def print_info(self) -> None:
+        """
+        Prints the introduction of the location when the player enters the location, can either print the long
+        introduction if the player hasn't been to the location yet, or can print the brief introduction if the player has
+        been to the location before.
+
+        """
+        if self.been_here:
+            print(self.brief_intro)
+        else:
+            print(self.long_intro)
 
     def available_actions(self):
         """
@@ -125,6 +143,8 @@ class Player:
         self.victory = False
 
 
+
+
 class World:
     """A text adventure game world storing all location, item and map data.
 
@@ -156,6 +176,7 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
+        self.locations = []
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
