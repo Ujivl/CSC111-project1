@@ -1,19 +1,11 @@
--1 EMPTY
-0 gold
-That way is blocked.
-That way is blocked.
-END
-
 0 EXAM-HALL
-c
-wolf.txt pheonix.txt panther.txt
+wolf.txt phoenix.txt panther.txt
 5 gold
 brief description
 detailed description
 END
 
 1 PROFFESSORS-ROOM
-c
 sadia.txt
 0 gold
 brief description
@@ -21,7 +13,6 @@ detailed description
 END
 
 2 ROOM-OF-SCROLLS
-c
 griffin.txt
 0 gold
 brief description
@@ -29,7 +20,6 @@ detailed description
 END
 
 3 LIBRARY-RECEPTION
-c
 librarian.txt
 10 gold
 brief description
@@ -37,7 +27,6 @@ detailed description
 END
 
 4 QUAD
-c
 mapper.txt
 5 gold
 brief description
@@ -45,7 +34,6 @@ detailed description
 END
 
 5 CAFETERIA
-c
 slime.txt
 5 gold
 brief description
@@ -53,7 +41,6 @@ detailed description
 END
 
 6 TTC
-c
 goblin.txt
 5 gold
 brief description
@@ -61,7 +48,6 @@ detailed description
 END
 
 7 GYM
-c
 mimick.txt
 5 gold
 brief description

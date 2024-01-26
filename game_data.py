@@ -21,6 +21,26 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from typing import Optional, TextIO
 
 
+class Character:
+    """
+    Class representing a character
+    """
+    character_name: str
+    character_file: str
+
+    def __init__(self, character_file: str) -> None:
+        self.character_file = character_file
+
+class Hostile_Character(Character):
+    """
+    Sub-class represenrting a hostile character
+    """
+
+class Docile_Character(Character):
+    """
+    Sub-class represenrting a hostile character
+    """
+
 class Location:
     """A location in our text adventure game world.
 
@@ -33,7 +53,7 @@ class Location:
     name: str
     characters: list[Character]
     gold: int
-    been_here: bool
+    been_here: bool = False
     brief_intro: str
     long_intro: str
     location_number: int
@@ -97,25 +117,6 @@ class Location:
         # function header (e.g. add in parameters, complete the type contract) as needed
 
         # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
-
-class Character:
-    """
-    Class representing a character
-    """
-    character_name: str
-    character_file: str
-
-    def __init__(self, character_file: str) -> None:
-
-class Hostile_Character(Character):
-    """
-    Sub-class represenrting a hostile character
-    """
-
-class Docile_Character(Character):
-    """
-    Sub-class represenrting a hostile character
-    """
 
 
 class Item:
@@ -209,7 +210,6 @@ class World:
         locations_list = []
         for line in location_data:
 
-            locations_list.append([int(x) for x in line.strip().split()])
 
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
