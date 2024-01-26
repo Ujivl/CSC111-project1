@@ -6,7 +6,7 @@ END
 
 0 EXAM-HALL
 c
-wolf.txt pheonix.txt panther.txt
+wolf.txt phoenix.txt panther.txt
 5 gold
 brief description
 detailed description
