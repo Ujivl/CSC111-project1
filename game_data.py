@@ -51,10 +51,10 @@ class Location:
             with open(file) as f:
                 for l in f:
                     line = l.strip()
-                    if line.isdigit() and line == 1:
-                        self.character = None #assign this as a non-hostile character: Docile_Character(file)
-                    elif line.isdigit() and line == 0:
-                        self.character = None # assign this as a hostile character: Hostile_Character(file)
+                    if line.isdigit() and line == 0:
+                        self.character = Docile_Character(file)
+                    elif line.isdigit() and line == 1:
+                        self.character = Hostile_Character(file)
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -106,6 +106,16 @@ class Character:
     character_file: str
 
     def __init__(self, character_file: str) -> None:
+
+class Hostile_Character(Character):
+    """
+    Sub-class represenrting a hostile character
+    """
+
+class Docile_Character(Character):
+    """
+    Sub-class represenrting a hostile character
+    """
 
 
 class Item:
