@@ -1,4 +1,5 @@
 -1 EMPTY
+c
 mapper.txt
 0 gold
 That way is blocked.
@@ -6,6 +7,7 @@ That way is blocked.
 END
 
 0 EXAM-HALL
+c
 wolf.txt pheonix.txt panther.txt
 5 gold
 brief description
@@ -13,6 +15,7 @@ detailed description
 END
 
 1 PROFFESSORS-ROOM
+c
 sadia.txt
 0 gold
 brief description

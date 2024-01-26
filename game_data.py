@@ -31,7 +31,7 @@ class Location:
         - # TODO
     """
     name: str
-    character: Character
+    characters: list[Character]
     gold: int
     been_here: bool
     brief_intro: str
