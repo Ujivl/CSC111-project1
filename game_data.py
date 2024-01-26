@@ -58,11 +58,14 @@ class Location:
     long_intro: str
     location_number: int
 
-    def __init__(self, brief_intro: str, long_intro: str, gold: int, character_files: list[str]) -> None:
+    def __init__(self, name: str, location_number: int, brief_intro: str, long_intro: str, gold: int,
+                 character_files: list[str]) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
         """
+        self.name = name
+        self.location_number = location_number
         self.gold = gold
         self.brief_intro = brief_intro
         self.long_intro = long_intro
@@ -174,8 +177,6 @@ class Player:
         self.victory = False
 
 
-
-
 class World:
     """A text adventure game world storing all location, item and map data.
 
@@ -187,6 +188,7 @@ class World:
         - # TODO
     """
     map: list[list]
+    locations_list: list[Location]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -207,8 +209,18 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
-        locations_list = []
-        for line in location_data:
+        self.locations_list = []
+        for _ in range(8):
+            l1 = location_data.readline().strip().split()
+            location_number, name = int(l1[0]), l1[1]
+            character_files = location_data.readline().strip().split()
+            gold = int(location_data.readline().strip())
+            brief_intro = location_data.readline().strip()
+            long_intro = location_data.readline().strip()
+            location = Location(name, location_number, brief_intro, long_intro, gold, character_files)
+            self.locations_list.append(location)
+
+
 
 
 
@@ -244,8 +256,15 @@ class World:
          return None.)
         """
 
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+        location_number = self.map[y][x]
+        for i in self.locations_list:
+            if location_number == i.location_number:
+                return i
+            else:
+                return None
 
 
 w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
 print(w.map)
+loc = w.get_location(3, 1)
+print(loc.name)
