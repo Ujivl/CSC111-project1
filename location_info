@@ -1,7 +1,7 @@
 _The quad_
 gold: 5
 coordinates: 2 3
-characters: N/A
+characters: mapper
 The starting area of the player, can use the map action here to tell the player where each location is.
 
 _Exam hall_

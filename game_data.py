@@ -32,18 +32,29 @@ class Location:
     """
     name: str
     character: Character
-    coordinates: list[int]
+    gold: int
     been_here: bool
     brief_intro: str
     long_intro: str
     location_number: int
 
-    def __init__(self, coordinates: list[int], brief_intro: str, long_intro: str,) -> None:
+    def __init__(self, brief_intro: str, long_intro: str, gold: int, character_files: list[str]) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
         """
-        self.coordinates = coordinates
+        self.gold = gold
+        self.brief_intro = brief_intro
+        self.long_intro = long_intro
+
+        for file in character_files:
+            with open(file) as f:
+                for l in f:
+                    line = l.strip()
+                    if line.isdigit() and line == 1:
+                        self.character = None #assign this as a non-hostile character: Docile_Character(file)
+                    elif line.isdigit() and line == 0:
+                        self.character = None # assign this as a hostile character: Hostile_Character(file)
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -86,6 +97,15 @@ class Location:
         # function header (e.g. add in parameters, complete the type contract) as needed
 
         # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
+
+class Character:
+    """
+    Class representing a character
+    """
+    character_name: str
+    character_file: str
+
+    def __init__(self, character_file: str) -> None:
 
 
 class Item:
@@ -176,7 +196,11 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
-        self.locations = []
+        locations_list = []
+        for line in location_data:
+
+            locations_list.append([int(x) for x in line.strip().split()])
+
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:

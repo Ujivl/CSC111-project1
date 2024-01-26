@@ -1,53 +1,58 @@
 -1 EMPTY
-0
+mapper.txt
+0 gold
 That way is blocked.
 That way is blocked.
 END
 
-1 EXAM-HALL
-5
+0 EXAM-HALL
+wolf.txt pheonix.txt panther.txt
+5 gold
 brief description
 detailed description
 END
 
-2 PROFFESSORS-ROOM
-0
+1 PROFFESSORS-ROOM
+sadia.txt
+0 gold
 brief description
 detailed description
 END
 
-3 ROOM-OF-SCROLLS
-0
+2 ROOM-OF-SCROLLS
+griffin.txt
+0 gold
 brief description
 detailed description
 END
 
-4 LIBRARY-RECEPTION
-10
+3 LIBRARY-RECEPTION
+librarian.txt
+10 gold
 brief description
 detailed description
 END
 
-5 QUAD
-5
+4 QUAD
+5 gold
 brief description
 detailed description
 END
 
-6 CAFETERIA
-5
+5 CAFETERIA
+5 gold
 brief description
 detailed description
 END
 
-7 TTC
-0
+6 TTC
+5 gold
 brief description
 detailed description
 END
 
-8 GYM
-5
+7 GYM
+5 gold
 brief description
 detailed description
 END
