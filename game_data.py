@@ -266,5 +266,5 @@ class World:
 
 w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
 print(w.map)
-loc = w.get_location(3, 1)
-print(loc.name)
+loc = w.get_location(0, 0)
+print(loc)
