@@ -31,10 +31,7 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "quit", "back"]
 
     while not p.victory:
-        if w.get_location(p.x, p.y) is None:
-            print("This way is blocked")
-        else:
-            location = w.get_location(p.x, p.y)
+        location = w.get_location(p.x, p.y)
 
         # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
         # Depending on whether or not it's been visited before,
@@ -45,17 +42,16 @@ if __name__ == "__main__":
         for action in location.available_actions():
             print(action)
         choice = input("\nEnter action: ")
-        directions = ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest"]
+        directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
 
         if "go " in choice:
-            if choice[2:]:
-                p.y += 1
-            elif "NORTH" in choice:
-                p.y -= 1
-            if "EAST" in choice:
-                p.x += 1
-            elif "WEST" in choice:
-                p.x -= 1
+            if w.get_location(p.x + directions[choice[3:0]][0], p.y + directions[choice[3:0]][1]) is None:
+                print("invalid")
+            else:
+                p.x += directions[choice[3:0]][0]
+                p.y += directions[choice[3:0]][1]
+
+
 
             choice = input("\nChoose action: ")
 
