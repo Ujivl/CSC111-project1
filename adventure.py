@@ -25,17 +25,19 @@ from game_data import World, Item, Location, Player
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
-    w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
+    w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(3, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     t = None
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+        print("------------------------------------------------")
         print(f"YOU ARE CURRENTLY AT {location.name}. \n")
         location.print_info()
-
+        print("------------------------------------------------")
         choice = input("\nEnter action: ")
+        print("\n")
 
         if "go " in choice and choice[3:] in directions.keys():
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:

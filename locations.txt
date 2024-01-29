@@ -3,38 +3,46 @@ wolf.txt phoenix.txt panther.txt
 5
 brief description
 detailed description
+----------
 1 PROFFESSORS-ROOM
 sadia.txt
 0
 brief description
 detailed description
+----------
 2 ROOM-OF-SCROLLS
 griffin.txt
 0
 brief description
 detailed description
+----------
 3 LIBRARY-RECEPTION
 librarian.txt
 10
 brief description
 detailed description
+----------
 4 QUAD
 mapper.txt
 5
 brief description
 detailed description
+----------
 5 CAFETERIA
 slime.txt
 5
 brief description
 detailed description
+----------
 6 TTC
 goblin.txt
 5
 brief description
 detailed description
+----------
 7 GYM
 mimick.txt
 5
 brief description
 detailed description
+----------

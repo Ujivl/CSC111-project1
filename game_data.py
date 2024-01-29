@@ -204,7 +204,9 @@ class World:
 
         self.map = self.load_map(map_data)
         self.locations_list = []
+        self.item_list = []
         num_of_location = 8
+        num_of_items = 5
 
         for _ in range(num_of_location):
             l1 = self.read_file_line(location_data).split()
@@ -214,12 +216,20 @@ class World:
                                 self.read_file_line(location_data),
                                 self.read_file_line(location_data))
             self.locations_list.append(location)
+            self.read_file_line(location_data)
 
-    def read_file_line(self, location_data: TextIO) -> str:
+        for _ in range(num_of_items):
+            item = Item(self.read_file_line(items_data),
+                        int(self.read_file_line(items_data)),
+                        int(self.read_file_line(items_data)),
+                        int(self.read_file_line(items_data)))
+            self.item_list.append(item)
+
+    def read_file_line(self, data: TextIO) -> str:
         """
-        returns a line of the location data file without the newline (made for more neat code).
+        returns a line of the data file without the newline (made for more neat code).
         """
-        return location_data.readline().strip()
+        return data.readline().strip()
 
     def load_map(self, map_data: TextIO) -> list[list[int]]:
         """
@@ -252,8 +262,9 @@ class World:
 
 
 """
-w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
+w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
 print(w.map)
 loc = w.get_location(3, 2)
 print(loc.location_number)
+print(w.item_list[0].name)
 """
