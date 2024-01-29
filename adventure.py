@@ -28,6 +28,7 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
     p = Player(3, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
+    t = None
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -36,12 +37,18 @@ if __name__ == "__main__":
 
         choice = input("\nEnter action: ")
 
-        if "go " in choice:
+        if "go " in choice and choice[3:] in directions.keys():
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
-                print("invalid")
+                print("That way is blocked \n")
             else:
                 p.x += directions[choice[3:]][0]
                 p.y += directions[choice[3:]][1]
+        elif "go " in choice:
+            print("Invalid Location \n")
+        elif t == 1:  # place-holder if statement for when the player decides to do something else
+            print("a choice other than going a direction")
+        else:  # runs when the program does not recognize what the player wants to do
+            print("what are you yappin about bro")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
