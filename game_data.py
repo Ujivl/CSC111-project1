@@ -261,11 +261,12 @@ class World:
         for i in self.locations_list:
             if location_number == i.location_number:
                 return i
-            else:
-                return None
+        return None
 
 
+"""
 w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
 print(w.map)
-loc = w.get_location(0, 0)
-print(loc)
+loc = w.get_location(3, 2)
+print(loc.location_number)
+"""

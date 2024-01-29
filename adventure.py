@@ -31,10 +31,11 @@ if __name__ == "__main__":
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+        print("MAP: " + str(w.map))
+        print(w.get_location(p.x, p.y))
+        print(location.name)
         location.print_info()
 
-        for action in location.available_actions():
-            print(action)
         choice = input("\nEnter action: ")
 
         if "go " in choice:
