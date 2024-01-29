@@ -107,6 +107,7 @@ class Location:
             print(self.brief_intro)
         else:
             print(self.long_intro)
+            self.been_here = True
 
     def available_actions(self):
         """

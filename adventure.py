@@ -25,24 +25,17 @@ from game_data import World, Item, Location, Player
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
-    w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
+    w = World(open("map.txt"), open("locations.txt"), open("map.txt"))
     p = Player(3, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
-
-    menu = ["look", "inventory", "score", "quit", "back"]
+    directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+        location.print_info()
 
-        # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
-        # Depending on whether or not it's been visited before,
-        # print either full description (first time visit) or brief description (every subsequent visit)
-
-        print("What to do? \n")
-        print("[menu]")
         for action in location.available_actions():
             print(action)
         choice = input("\nEnter action: ")
-        directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
 
         if "go " in choice:
             if w.get_location(p.x + directions[choice[3:0]][0], p.y + directions[choice[3:0]][1]) is None:
@@ -51,9 +44,6 @@ if __name__ == "__main__":
                 p.x += directions[choice[3:0]][0]
                 p.y += directions[choice[3:0]][1]
 
-
-
-            choice = input("\nChoose action: ")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
