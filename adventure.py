@@ -31,20 +31,17 @@ if __name__ == "__main__":
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
-        print("MAP: " + str(w.map))
-        print(w.get_location(p.x, p.y))
-        print(location.name)
+        print(f"YOU ARE CURRENTLY AT {location.name}. \n")
         location.print_info()
 
         choice = input("\nEnter action: ")
 
         if "go " in choice:
-            if w.get_location(p.x + directions[choice[3:0]][0], p.y + directions[choice[3:0]][1]) is None:
+            if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
                 print("invalid")
             else:
-                p.x += directions[choice[3:0]][0]
-                p.y += directions[choice[3:0]][1]
-
+                p.x += directions[choice[3:]][0]
+                p.y += directions[choice[3:]][1]
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
