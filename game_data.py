@@ -31,15 +31,18 @@ class Character:
     def __init__(self, character_file: str) -> None:
         self.character_file = character_file
 
-class Hostile_Character(Character):
+
+class HostileCharacter(Character):
     """
-    Sub-class represenrting a hostile character
+    Subclass represenrting a hostile character
     """
 
-class Docile_Character(Character):
+
+class DocileCharacter(Character):
     """
-    Sub-class represenrting a hostile character
+    Subclass represenrting a hostile character
     """
+
 
 class Location:
     """A location in our text adventure game world.
@@ -58,8 +61,8 @@ class Location:
     long_intro: str
     location_number: int
 
-    def __init__(self, name: str, location_number: int, brief_intro: str, long_intro: str, gold: int,
-                 character_files: list[str]) -> None:
+    def __init__(self, name: str, location_number: int, character_files: list[str], gold: int,
+                 brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
@@ -72,12 +75,12 @@ class Location:
 
         for file in character_files:
             with open(file) as f:
-                for l in f:
-                    line = l.strip()
+                for line_n in f:
+                    line = line_n.strip()
                     if line.isdigit() and line == 0:
-                        self.character = Docile_Character(file)
+                        self.character = DocileCharacter(file)
                     elif line.isdigit() and line == 1:
-                        self.character = Hostile_Character(file)
+                        self.character = HostileCharacter(file)
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -99,8 +102,8 @@ class Location:
     def print_info(self) -> None:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
-        introduction if the player hasn't been to the location yet, or can print the brief introduction if the player has
-        been to the location before.
+        introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
+        has been to the location before.
 
         """
         if self.been_here:
@@ -199,38 +202,25 @@ class World:
         - items_data: name of text file containing item data (format left up to you)
         """
 
-        # NOTES:
-
-        # map_data should refer to an open text file containing map data in a grid format, with integers separated by a
-        # space, representing each location, as described in the project handout. Each integer represents a different
-        # location, and -1 represents an invalid, inaccessible space.
-
-        # You may ADD parameters/attributes/methods to this class as you see fit.
-        # BUT DO NOT RENAME OR REMOVE ANY EXISTING METHODS/ATTRIBUTES IN THIS CLASS
-
-        # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
         self.locations_list = []
-        for _ in range(8):
-            l1 = location_data.readline().strip().split()
-            location_number, name = int(l1[0]), l1[1]
-            character_files = location_data.readline().strip().split()
-            gold = int(location_data.readline().strip())
-            brief_intro = location_data.readline().strip()
-            long_intro = location_data.readline().strip()
-            location = Location(name, location_number, brief_intro, long_intro, gold, character_files)
+        num_of_location = 8
+
+        for _ in range(num_of_location):
+            l1 = self.read_file_line(location_data).split()
+            location = Location(l1[1], int(l1[0]),
+                                self.read_file_line(location_data).split(),
+                                int(self.read_file_line(location_data)),
+                                self.read_file_line(location_data),
+                                self.read_file_line(location_data))
             self.locations_list.append(location)
 
+    def read_file_line(self, location_data: TextIO) -> str:
+        """
+        returns a line of the location data file without the newline (made for more neat code).
+        """
+        return location_data.readline().strip()
 
-
-
-
-        # NOTE: You may choose how to store location and item data; create your own World methods to handle these
-        # accordingly. The only requirements:
-        # 1. Make sure the Location class is used to represent each location.
-        # 2. Make sure the Item class is used to represent each item.
-
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def load_map(self, map_data: TextIO) -> list[list[int]]:
         """
         Store map from open file map_data as the map attribute of this object, as a nested list of integers like so:
@@ -248,9 +238,6 @@ class World:
 
         return final_list
 
-    # TODO: Add methods for loading location data and item data (see note above).
-
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
         """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
