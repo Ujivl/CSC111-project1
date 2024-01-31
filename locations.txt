@@ -3,46 +3,72 @@ wolf.txt phoenix.txt panther.txt
 5
 brief description
 detailed description
+descriptions end
 ----------
 1 PROFFESSORS-ROOM
 sadia.txt
 0
 brief description
 detailed description
+descriptions end
 ----------
 2 ROOM-OF-SCROLLS
 griffin.txt
 0
 brief description
 detailed description
+descriptions end
 ----------
 3 LIBRARY-RECEPTION
 librarian.txt
 10
 brief description
 detailed description
+descriptions end
 ----------
 4 QUAD
 mapper.txt
 5
 brief description
-detailed description
+You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
+you are multiple buildings where you spent last night studying for your exam. You look around and notice the campus is
+now filled with magic, and strange creatures have appeared out of nowhere! Your upper year friend approaches you and
+states that the concentrated lack of sleep in the area has caused weird things to happen, and there are monsters
+surrounding the area. Your journey to get to the exam hall has gotten exponentially harder, as now you must get your
+items without getting eaten to make it to the exam on time. The quad connects to most of the important buildings you
+go to on a daily basis and can be used to access the map. Your friend state’s before you can access the map that you
+must solve this riddle so they can see that you are capable of going to the exam:
+descriptions end
 ----------
 5 CAFETERIA
 slime.txt
 5
 brief description
-detailed description
+You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
+quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
+one of your favourite places on campus. While pondering, you think the only item it does not serve is a good home
+cooked meal, which you have not had in a while.
+descriptions end
 ----------
 6 TTC
 goblin.txt
 5
 brief description
-detailed description
+You enter the TTC subway station. The sounds of presto cards getting tapped envelopes your ears. The station buzzes
+with activity as commuters shuffle around going in and out of trains. During your insane studying journey last night,
+you remember you went over to TMU for a change in environment, taking the subway to arrive there. As you try to
+remember what happened, the overhead announcement echoes, providing a friendly reminder of the next approaching train.
+The CS building is positioned in the north, and to the west, you'll find the exam hall.
+descriptions end
 ----------
 7 GYM
 mimick.txt
 5
 brief description
-detailed description
+You are now inside of the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
+mental and physical hardships. The gym, equipped with the latest technology gives students an opportunity to improve
+their mental and physical health. There are little to no students to be seen. The air smells particularly pungent
+today, but you do not take notice of it. You suddenly remember that you used the treadmill during one of your many
+escapades to focus on studying. The quad, where you began your journey, lies to the west.
+descriptions end
 locations end

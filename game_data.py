@@ -209,11 +209,20 @@ class World:
 
         while ending_line != "locations end":
             l1 = self.read_file_line(location_data).split()
+            detailed_description = ""
             location = Location(l1[1], int(l1[0]),
                                 self.read_file_line(location_data).split(),
                                 int(self.read_file_line(location_data)),
                                 self.read_file_line(location_data),
-                                self.read_file_line(location_data))
+                                "")
+
+            line = location_data.readline()
+
+            while line != "descriptions end\n":
+                detailed_description += line
+                line = location_data.readline()
+            location.long_intro = detailed_description
+
             self.locations_list.append(location)
             ending_line = self.read_file_line(location_data)
 
