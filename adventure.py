@@ -46,7 +46,7 @@ if __name__ == "__main__":
                 p.x += directions[choice[3:]][0]
                 p.y += directions[choice[3:]][1]
         elif "go " in choice:
-            print("Invalid Location \n")
+            print("invalid direction\n")
         elif t == 1:  # place-holder if statement for when the player decides to do something else
             print("a choice other than going a direction")
         else:  # runs when the program does not recognize what the player wants to do
