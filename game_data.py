@@ -177,6 +177,7 @@ class Player:
         self.y = y
         self.inventory = []
         self.victory = False
+        self.score = 0
 
     def edit_inventory(self, item: Item, add_remove: str) -> None:
         """
