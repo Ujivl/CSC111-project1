@@ -19,7 +19,7 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 
 # Note: You may add in other import statements here as needed
 from game_data import World, Item, Location, Player
-
+from pygame import mixer
 # Note: You may add helper functions, classes, etc. here as needed
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
@@ -32,6 +32,15 @@ if __name__ == "__main__":
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     print([x.name for x in winning_items])
     while not p.victory:
+        mixer.init()
+
+        # Load audio file
+        mixer.music.load('stranger-things-124008.mp3')
+        mixer.music.set_volume(0.5)
+
+        # Play the music
+        mixer.music.play()
+
         location = w.get_location(p.x, p.y)
         print("------------------------------------------------")
         print(f"YOU ARE CURRENTLY AT {location.name}. \n")
@@ -55,3 +64,5 @@ if __name__ == "__main__":
             w.do_action(p, location, choice)
         else:  # runs when the program does not recognize what the player wants to do
             print("what are you yappin about bro\n")
+        if "quit" in choice:
+            break
