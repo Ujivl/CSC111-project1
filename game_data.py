@@ -178,6 +178,24 @@ class Player:
         self.inventory = []
         self.victory = False
 
+    def edit_inventory(self, item: Item, add_remove: str) -> None:
+        """
+        adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r,
+        raise index error
+        """
+        if add_remove == "a":
+            self.inventory.append(item)
+        elif item in self.inventory and add_remove == "r":
+            self.inventory.remove(item)
+        else:
+            raise IndexError
+
+    def check_required_items(self, winning_items: set[Item]) -> bool:
+        """
+        checks to see if the player has reached ending location with all the objects.
+        """
+        return all([item in winning_items for item in self.inventory])
+
 
 class World:
     """A text adventure game world storing all location, item and map data.

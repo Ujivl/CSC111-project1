@@ -26,9 +26,11 @@ from game_data import World, Item, Location, Player
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(3, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
+    p = Player(3, 2)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     t = None
+    winning_location = w.get_location(3, 1)  # TODO: file dependent
+    winning_items = {item.target_position == winning_location.location_number for item in w.item_list}
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -48,9 +50,12 @@ if __name__ == "__main__":
         elif "go " in choice:
             print("invalid direction\n")
         elif t == 1:  # place-holder if statement for when the player decides to do something else
-            print("a choice other than going a direction")
+            print("a choice other than going a direction\n")
         else:  # runs when the program does not recognize what the player wants to do
-            print("what are you yappin about bro")
+            print("what are you yappin about bro\n")
+
+        if location == winning_location and p.check_required_items(winning_items):
+            p.victory = True
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
