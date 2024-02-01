@@ -26,18 +26,21 @@ from game_data import World, Item, Location, Player
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(3, 2)  # TODO: file dependent
+    p = Player(2, 2)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit"]
-    winning_location = w.get_location(3, 1)  # TODO: file dependent
+    winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
-
+    print([x.name for x in winning_items])
     while not p.victory:
         location = w.get_location(p.x, p.y)
         print("------------------------------------------------")
         print(f"YOU ARE CURRENTLY AT {location.name}. \n")
         location.print_info()
         print("------------------------------------------------")
+        if location == winning_location and p.check_required_items(winning_items):
+            p.victory = True
+            break
         choice = input("\nEnter action: ").lower()
         print("\n")
 
@@ -53,6 +56,3 @@ if __name__ == "__main__":
             w.do_action(p, location, choice)
         else:  # runs when the program does not recognize what the player wants to do
             print("what are you yappin about bro\n")
-
-        if location == winning_location and p.check_required_items(winning_items):
-            p.victory = True
