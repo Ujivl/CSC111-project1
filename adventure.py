@@ -30,14 +30,22 @@ if __name__ == "__main__":
     possible_actions = ["look", "inventory", "score", "quit"]
     winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
-    print([x.name for x in winning_items])
+    p.edit_inventory(w.item_list[0], "a")
+    p.edit_inventory(w.item_list[1], "a")  # TODO: just adding two items to inventory to test stuff
+    location = w.get_location(p.x, p.y)
+    print("------------------------------------------------")
+    print(f"YOU ARE CURRENTLY AT {location.name}. \n")
+    location.print_info()
+    print("------------------------------------------------")
 
     while not p.victory:
-        location = w.get_location(p.x, p.y)
-        print("------------------------------------------------")
-        print(f"YOU ARE CURRENTLY AT {location.name}. \n")
-        location.print_info()
-        print("------------------------------------------------")
+        location, past_location = w.get_location(p.x, p.y), location
+        if location != past_location:
+            print("------------------------------------------------")
+            print(f"YOU ARE CURRENTLY AT {location.name}. \n")
+            location.print_info()
+            print("------------------------------------------------")
+
         if location == winning_location and p.check_required_items(winning_items):
             p.victory = True
             break
@@ -52,9 +60,17 @@ if __name__ == "__main__":
                 p.y += directions[choice[3:]][1]
         elif "go " in choice:
             print("invalid direction\n")
-        elif choice in possible_actions:
+        elif choice in possible_actions or choice in location.available_actions():  # TODO: add available_actions()
             if choice == "quit":
                 break
-            w.do_action(p, location, choice)
-        else:  # runs when the program does not recognize what the player wants to do
+            elif choice == "look":
+                location.been_here = False
+                location.print_info()
+            elif choice == "inventory":
+                p.show_inventory()
+            elif choice == "score":
+                print(f"SCORE: {p.score}")
+            else:
+                w.do_action(p, location, choice)
+        else:
             print("what are you yappin about bro\n")

@@ -164,6 +164,8 @@ class Player:
         - # TODO
     """
 
+    score: int = 0
+
     def __init__(self, x: int, y: int) -> None:
         """
         Initializes a new Player at position (x, y).
@@ -200,6 +202,15 @@ class Player:
         else:
             return False
 
+    def show_inventory(self):
+        """
+        prints out all the items in the inventory in a neat format.
+        """
+        if not self.inventory:
+            print("you currently have no items in your inventory")
+        else:
+            for item in self.inventory:
+                print(f"[{item.name}]")
 
 
 class World:
