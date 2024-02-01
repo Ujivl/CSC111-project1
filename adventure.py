@@ -64,5 +64,3 @@ if __name__ == "__main__":
             w.do_action(p, location, choice)
         else:  # runs when the program does not recognize what the player wants to do
             print("what are you yappin about bro\n")
-        if "quit" in choice:
-            break
