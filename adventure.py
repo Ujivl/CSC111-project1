@@ -31,6 +31,7 @@ if __name__ == "__main__":
     winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     print([x.name for x in winning_items])
+
     while not p.victory:
         mixer.init()
 
@@ -61,8 +62,8 @@ if __name__ == "__main__":
         elif "go " in choice:
             print("invalid direction\n")
         elif choice in possible_actions:
+            if choice == "quit":
+                break
             w.do_action(p, location, choice)
         else:  # runs when the program does not recognize what the player wants to do
             print("what are you yappin about bro\n")
-        if "quit" in choice:
-            break
