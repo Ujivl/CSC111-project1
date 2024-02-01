@@ -19,21 +19,7 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2024 CSC111 Teaching Team
 """
 from typing import Optional, TextIO
-from pygame import mixer
 
-#Instantiate mixer
-mixer.init()
-
-#Load audio file
-mixer.music.load('stranger-things-124008.mp3')
-
-print("music started playing....")
-
-#Set preferred volume
-mixer.music.set_volume(0.5)
-
-#Play the music
-mixer.music.play()
 
 class Character:
     """
