@@ -28,9 +28,9 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(3, 2)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
-    t = None
+    possible_actions = ["look", "inventory", "score", "quit"]
     winning_location = w.get_location(3, 1)  # TODO: file dependent
-    winning_items = {item.target_position == winning_location.location_number for item in w.item_list}
+    winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         print(f"YOU ARE CURRENTLY AT {location.name}. \n")
         location.print_info()
         print("------------------------------------------------")
-        choice = input("\nEnter action: ")
+        choice = input("\nEnter action: ").lower()
         print("\n")
 
         if "go " in choice and choice[3:] in directions.keys():
@@ -49,21 +49,10 @@ if __name__ == "__main__":
                 p.y += directions[choice[3:]][1]
         elif "go " in choice:
             print("invalid direction\n")
-        elif t == 1:  # place-holder if statement for when the player decides to do something else
-            print("a choice other than going a direction\n")
+        elif choice in possible_actions:
+            w.do_action(p, location, choice)
         else:  # runs when the program does not recognize what the player wants to do
             print("what are you yappin about bro\n")
 
         if location == winning_location and p.check_required_items(winning_items):
             p.victory = True
-
-        # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
-        #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
-        #  the choice the player made was just a movement, so only updating player's position is enough to change the
-        #  location to the next appropriate location
-        #  Possibilities:
-        #  A helper function such as do_action(w, p, location, choice)
-        #  OR A method in World class w.do_action(p, location, choice)
-        #  OR Check what type of action it is, then modify only player or location accordingly
-        #  OR Method in Player class for move or updating inventory
-        #  OR Method in Location class for updating location item info, or other location data etc....

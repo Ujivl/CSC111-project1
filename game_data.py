@@ -285,6 +285,12 @@ class World:
                 return i
         return None
 
+    def do_action(self, p: Player, location: Location, choice: str):
+        """
+        Does an action
+        """
+
+
 
 """
 w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
