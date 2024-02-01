@@ -294,6 +294,8 @@ class World:
         """
         Does an action
         """
+        if choice == "quit":
+
 
 
 
