@@ -64,8 +64,6 @@ class Location:
     def __init__(self, name: str, location_number: int, character_files: list[str], gold: int,
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
         """
         self.name = name
         self.location_number = location_number
