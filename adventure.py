@@ -31,16 +31,16 @@ if __name__ == "__main__":
     winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     print([x.name for x in winning_items])
+    mixer.init()
+
+    # # Load audio file
+    # mixer.music.load('stranger-things-124008.mp3')
+    # mixer.music.set_volume(0.5)
+    #
+    # # Play the music
+    # mixer.music.play()
+
     while not p.victory:
-        mixer.init()
-
-        # Load audio file
-        mixer.music.load('stranger-things-124008.mp3')
-        mixer.music.set_volume(0.5)
-
-        # Play the music
-        mixer.music.play()
-
         location = w.get_location(p.x, p.y)
         print("------------------------------------------------")
         print(f"YOU ARE CURRENTLY AT {location.name}. \n")
