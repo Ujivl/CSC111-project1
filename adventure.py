@@ -22,7 +22,7 @@ from game_data import World, Item, Location, Player
 from pygame import mixer
 # Note: You may add helper functions, classes, etc. here as needed
 
-# Note: You may modify the code below as needed; the following starter template are just suggestions
+
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 2)  # TODO: file dependent

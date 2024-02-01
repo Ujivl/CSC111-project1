@@ -171,10 +171,6 @@ class Player:
         Initializes a new Player at position (x, y).
         """
 
-        # NOTES:
-        # This is a suggested starter class for Player.
-        # You may change these parameters and the data available for the Player object as you see fit.
-
         self.x = x
         self.y = y
         self.inventory = []
