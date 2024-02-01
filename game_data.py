@@ -303,8 +303,6 @@ class World:
         """
 
 
-
-
 """
 w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
 print(w.map)
