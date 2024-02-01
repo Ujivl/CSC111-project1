@@ -208,7 +208,7 @@ class Player:
         """
         checks to see if the player has reached ending location with all the objects.
         """
-        if all([item in winning_items for item in self.inventory]):
+        if all([item in self.inventory for item in winning_items]):
             print("items reached end")
             return True
         else:
