@@ -12,7 +12,7 @@ TO DO LIST:
 
 - Music (enchancements)
 - characters (enhancements)
-    - each character should have a quest they can give u (maybe we can add a character that gives u an item thats fake)
+    - each character should have a quest they can give u (maybe we can add a character that gives u an item that's fake)
     - add talk command to each character in the location that will activate the quest line
     - add a quests command that tracks all quests (optional)
 - consumables (enchancements)
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     p.edit_inventory(w.item_list[0], "a")
-    p.edit_inventory(w.item_list[1], "a")  # TODO: just adding two items to inventory to test stuff
+    p.edit_inventory(w.item_list[1], "a")  # just adding two items to inventory to test stuff
     location = w.get_location(p.x, p.y)
     print("------------------------------------------------")
     print(f"YOU ARE CURRENTLY AT {location.name}. \n")
