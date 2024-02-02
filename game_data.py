@@ -76,7 +76,7 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - coordinate: an x and y position the player is currently at
+        -
         -
     Representation Invariants:
         - # TODO

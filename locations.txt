@@ -1,32 +1,17 @@
-0-EXAM HALL
-wolf.txt
-5
-brief description
-detailed description
-descriptions end
-----------
-1-PROFFESSORS ROOM
-sadia.txt
-0
-brief description
-detailed description
-descriptions end
-----------
-2-ROOM OF SCROLLS
-griffin.txt
-0
-brief description
-detailed description
-descriptions end
-----------
-3-LIBRARY RECEPTION
+0-LIBRARY RECEPTION
 librarian.txt
 10
 You are standing at the front door of the library.
+You are now inside the library. Around you are happiness deprived students, all wishing exam season was over so they
+could finally relax. You examine the desk you were working at last night and see the mountain of eraser debris on the
+floor. Your eraser, now the mere size of a pea, helped you to make the perfect cheat sheet. The librarian is right next
+to you, but you did not see her in the room prior to this, almost as if she appeared from thin air. She scolds you for
+making a mess in her library and asks you to clean up after yourself. You apologise profusely and start cleaning the
+eraser debris.
 detailed description
 descriptions end
 ----------
-4-QUAD
+1-QUAD
 mapper.txt
 5
 You are standing in the middle of the quad. To the west lies the library, to the East, there is the UofT gym.
@@ -40,28 +25,7 @@ go to on a daily basis and can be used to access the map. Your friend state’s 
 must solve this riddle so they can see that you are capable of going to the exam:
 descriptions end
 ----------
-5-CAFETERIA
-slime.txt
-5
-You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
-You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
-quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
-one of your favourite places on campus. While pondering, you think the only item it does not serve is a good home
-cooked meal, which you have not had in a while.
-descriptions end
-----------
-6-TTC
-goblin.txt
-5
-You enter the TTC subway station. The CS building is positioned in the north, and to the west, you'll find the exam hall
-You enter the TTC subway station. The sounds of presto cards getting tapped envelopes your ears. The station buzzes
-with activity as commuters shuffle around going in and out of trains. During your insane studying journey last night,
-you remember you went over to TMU for a change in environment, taking the subway to arrive there. As you try to
-remember what happened, the overhead announcement echoes, providing a friendly reminder of the next approaching train.
-The CS building is positioned in the north, and to the west, you'll find the exam hall.
-descriptions end
-----------
-7-GYM
+2-GYM
 mimick.txt
 5
 brief description
@@ -71,4 +35,48 @@ their mental and physical health. There are little to no students to be seen. Th
 today, but you do not take notice of it. You suddenly remember that you used the treadmill during one of your many
 escapades to focus on studying. The quad, where you began your journey, lies to the west.
 descriptions end
+----------
+3-CAFETERIA
+slime.txt
+5
+You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
+You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
+quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
+one of your favourite places on campus. While pondering, you think the only item it does not serve is a good home
+cooked meal, which you have not had in a while.
+descriptions end
+----------
+4-BAHEN
+You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
+You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
+upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
+technological exploration.You notice your fellow peers are frantically preparing for the exam, while you are unsure if
+you will even be able toattend the exam. Out of all the students, one student in particular catches your attention as
+they are crying alone inthe corner of the foyer. The cafeteria is up north, while down south is the Queen's Park.
+----------
+5-EXAM HALL
+wolf.txt
+5
+You have reached the Exam Hall. Queen's Park is to the east of you.
+You have reached the Exam Hall (i can rewrite this because its kinda garbage rn). If you have all your items you
+may write the exam and easily get 100,
+however if you do not you may face the chance of failing this course. Queen's Park is to the east of you.
+descriptions end
+----------
+6-Queen's Park
+goblin.txt
+5
+You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall.
+You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall
+You enter the TTC subway station. The sounds of birds envelopes your ears. The park buzzes with activity as student
+shuffle around. During your insane studying journey last night, you remember you went to Queen's Park for a change in
+environment. As you try to remember what happened, you notice a faint aroma of freshly brewed coffee lingering in the
+air. The CS building is positioned in the north, and to the west, you'll find the exam hall.
+descriptions end
+----------
+7-Random room
+goblin.txt
+4
+You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
+You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 locations end
