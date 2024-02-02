@@ -25,10 +25,13 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - name: name of the item
+        - start_position: starting location of the item on the map
+        - target_position: the location where the item is supposed to end up in on the map
+        - target_points: idk what this does uji lol
 
     Representation Invariants:
-        - # TODO
+        - self.name != ""
     """
 
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
@@ -76,10 +79,17 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        -
-        -
+        - name: name of the location
+        - characters: characters within the location
+         - gold: amount of gold present in the location
+        - been_here: a boolean indicating whether the player has visited the location
+        - brief_intro: a short introduction to the location
+        - long_intro: a more detailed description of the location
+        - location_number: a unique identifier for the location
     Representation Invariants:
-        - # TODO
+        - self.gold >= 0
+        - location_number >= 0
+        - self.name != ""
     """
     name: str
     characters: Character
@@ -159,10 +169,15 @@ class Player:
     A Player in the text advanture game.
 
     Instance Attributes:
-        - # TODO
+        - x: x-coordinate of the player's position
+        - y: y-coordinate of the player's position
+        - inventory: a list of items the player is carrying
+        - victory: a boolean indicating whether the player has achieved victory
+        - score: the player's score in the game, accumulated by collecting items and visiting locations
+        - max_moves: the maximum number of moves allowed for the player
 
     Representation Invariants:
-        - # TODO
+        - self.max_moves > 0
     """
 
     score: int = 0
@@ -217,10 +232,11 @@ class World:
 
     Instance Attributes:
         - map: a nested list representation of this world's map
-        - # TODO add more instance attributes as needed; do NOT remove the map attribute
+        - locations_list: a list containing instances of Location inside the world
 
     Representation Invariants:
-        - # TODO
+        - len(self.map) > 0 and all(len(row) == len(map[0]) for row in self.map)
+        - all(isinstance(location, Location) for location in self.locations_list)
     """
     map: list[list]
     locations_list: list[Location]
