@@ -24,6 +24,7 @@ from typing import Optional, TextIO
 class Character:
     """
     Class representing a character
+
     """
     character_name: str
     character_file: str
