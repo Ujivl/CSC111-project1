@@ -176,6 +176,7 @@ class Player:
         self.inventory = []
         self.victory = False
         self.score = 0
+        self.max_moves = 5
 
     def edit_inventory(self, item: Item, add_remove: str) -> None:
         """
