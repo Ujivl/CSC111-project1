@@ -21,26 +21,55 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from typing import Optional, TextIO
 
 
+class Item:
+    """An item in our text adventure game world.
+
+    Instance Attributes:
+        - # TODO
+
+    Representation Invariants:
+        - # TODO
+    """
+
+    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
+        """Initialize a new item.
+        """
+
+        # NOTES:
+        # This is just a suggested starter class for Item.
+        # You may change these parameters and the data available for each Item object as you see fit.
+        # (The current parameters correspond to the example in the handout).
+        # Consider every method in this Item class as a "suggested method".
+        #
+        # The only thing you must NOT change is the name of this class: Item.
+        # All item objects in your game MUST be represented as an instance of this class.
+
+        self.name = name
+        self.start_position = start
+        self.target_position = target
+        self.target_points = target_points
+
+
 class Character:
     """
-    Class representing a character
+    Class representing a character and the item required for said Character.
 
+    Instance Attributes:
+        - character_name: the name of the character represented as a string
+        - item_required: the required item to obtain the reward from a character
+        - reward: the reward the player recieves upon completing the character's request
+        - quest: the task designated by the character to the player to obtain the reward
+    Representation Invariants:
+        - self.character_name != ""
+        - self.quest != ""
+        - self.reward is not None
     """
     character_name: str
-
+    item_required: Optional[Item] = None
+    reward = Item
+    quest = str
     def __init__(self, character_name: str) -> None:
-
-
-class HostileCharacter(Character):
-    """
-    Subclass represenrting a hostile character
-    """
-
-
-class DocileCharacter(Character):
-    """
-    Subclass represenrting a hostile character
-    """
+        self.character_name = character_name
 
 
 class Location:
@@ -48,7 +77,7 @@ class Location:
 
     Instance Attributes:
         - coordinate: an x and y position the player is currently at
-
+        -
     Representation Invariants:
         - # TODO
     """
@@ -123,35 +152,6 @@ class Location:
         # function header (e.g. add in parameters, complete the type contract) as needed
 
         # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
-
-
-class Item:
-    """An item in our text adventure game world.
-
-    Instance Attributes:
-        - # TODO
-
-    Representation Invariants:
-        - # TODO
-    """
-
-    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
-        """Initialize a new item.
-        """
-
-        # NOTES:
-        # This is just a suggested starter class for Item.
-        # You may change these parameters and the data available for each Item object as you see fit.
-        # (The current parameters correspond to the example in the handout).
-        # Consider every method in this Item class as a "suggested method".
-        #
-        # The only thing you must NOT change is the name of this class: Item.
-        # All item objects in your game MUST be represented as an instance of this class.
-
-        self.name = name
-        self.start_position = start
-        self.target_position = target
-        self.target_points = target_points
 
 
 class Player:
