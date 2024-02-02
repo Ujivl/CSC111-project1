@@ -45,16 +45,18 @@ if __name__ == "__main__":
         if location != past_location:
             print("------------------------------------------------")
             print(f"YOU ARE CURRENTLY AT {location.name}. \n")
-            location.print_info()
+            check_been_here = location.print_info()
             print("------------------------------------------------")
         if location == winning_location and p.check_required_items(winning_items):  # TODO: change this so it checks item location once the player drops
             p.victory = True
             break
         choice = input("\nEnter action: ").lower()
         print("\n")
+
         if p.max_moves == 0:
             print("You have exceeded the maximum number of moves.")
             break
+
         if "go " in choice and choice[3:] in directions.keys():
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
                 print("That way is blocked \n")
@@ -69,7 +71,7 @@ if __name__ == "__main__":
             if choice == "quit":
                 break
             elif choice == "look":
-                # location.been_here = False what does this do?
+                location.been_here = False
                 location.print_info()
             elif choice == "inventory":
                 p.show_inventory()

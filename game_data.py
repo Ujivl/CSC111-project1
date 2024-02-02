@@ -98,7 +98,7 @@ class Location:
 
         # TODO: Complete this method
 
-    def print_info(self) -> None:
+    def print_info(self) -> bool:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
@@ -107,9 +107,11 @@ class Location:
         """
         if self.been_here:
             print(self.brief_intro)
+            return False
         else:
             print(self.long_intro)
             self.been_here = True
+            return True
 
     def available_actions(self):
         """
