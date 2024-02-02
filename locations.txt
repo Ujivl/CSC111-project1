@@ -22,10 +22,8 @@ descriptions end
 3 LIBRARY-RECEPTION
 librarian.txt
 10
-brief description
 You are standing at the front door of the library.
 detailed description
-
 descriptions end
 ----------
 4 QUAD
@@ -33,7 +31,6 @@ mapper.txt
 5
 brief description
 You are standing in the middle of the quad. To the west lies the library, to the East, there is the UofT gym.
-detailed description
 You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
 you are multiple buildings where you spent last night studying for your exam. You look around and notice the campus is
 now filled with magic, and strange creatures have appeared out of nowhere! Your upper year friend approaches you and
@@ -49,7 +46,6 @@ slime.txt
 5
 brief description
 You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
-detailed description
 You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
 quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
 one of your favourite places on campus. While pondering, you think the only item it does not serve is a good home
@@ -61,7 +57,6 @@ goblin.txt
 5
 brief description
 You enter the TTC subway station. The CS building is positioned in the north, and to the west, you'll find the exam hall.
-detailed description
 You enter the TTC subway station. The sounds of presto cards getting tapped envelopes your ears. The station buzzes
 with activity as commuters shuffle around going in and out of trains. During your insane studying journey last night,
 you remember you went over to TMU for a change in environment, taking the subway to arrive there. As you try to
