@@ -1,32 +1,32 @@
-0 EXAM-HALL
+0-EXAM HALL
 wolf.txt phoenix.txt panther.txt
 5
 brief description
 detailed description
 descriptions end
 ----------
-1 PROFFESSORS-ROOM
+1-PROFFESSORS ROOM
 sadia.txt
 0
 brief description
 detailed description
 descriptions end
 ----------
-2 ROOM-OF-SCROLLS
+2-ROOM OF SCROLLS
 griffin.txt
 0
 brief description
 detailed description
 descriptions end
 ----------
-0 LIBRARY-RECEPTION
+3-LIBRARY RECEPTION
 librarian.txt
 10
 You are standing at the front door of the library.
 detailed description
 descriptions end
 ----------
-1 QUAD
+4-QUAD
 mapper.txt
 5
 brief description
@@ -41,8 +41,7 @@ go to on a daily basis and can be used to access the map. Your friend state’s 
 must solve this riddle so they can see that you are capable of going to the exam:
 descriptions end
 ----------
-
-5 CAFETERIA
+5-CAFETERIA
 slime.txt
 5
 brief description
@@ -53,7 +52,7 @@ one of your favourite places on campus. While pondering, you think the only item
 cooked meal, which you have not had in a while.
 descriptions end
 ----------
-6 TTC
+6-TTC
 goblin.txt
 5
 brief description
@@ -65,7 +64,7 @@ remember what happened, the overhead announcement echoes, providing a friendly r
 The CS building is positioned in the north, and to the west, you'll find the exam hall.
 descriptions end
 ----------
-7 GYM
+7-GYM
 mimick.txt
 5
 brief description
