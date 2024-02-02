@@ -107,11 +107,11 @@ class Location:
         """
         if self.been_here:
             print(self.brief_intro)
-            return False
+            return True
         else:
             print(self.long_intro)
             self.been_here = True
-            return True
+            return False
 
     def available_actions(self):
         """
@@ -179,7 +179,7 @@ class Player:
         self.inventory = []
         self.victory = False
         self.score = 0
-        self.max_moves = 5
+        self.max_moves = 100
 
     def edit_inventory(self, item: Item, add_remove: str) -> None:
         """

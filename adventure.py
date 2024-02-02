@@ -35,17 +35,16 @@ if __name__ == "__main__":
     location = w.get_location(p.x, p.y)
     print("------------------------------------------------")
     print(f"YOU ARE CURRENTLY AT {location.name}. \n")
-    location.print_info()
+    check_been_here = location.print_info()
     print("------------------------------------------------")
     while not p.victory:
-        if not location.been_here:
-            location.been_here = True
-            p.score += 1
         location, past_location = w.get_location(p.x, p.y), location
         if location != past_location:
             print("------------------------------------------------")
             print(f"YOU ARE CURRENTLY AT {location.name}. \n")
             check_been_here = location.print_info()
+            if not check_been_here:
+                p.score += 5
             print("------------------------------------------------")
         if location == winning_location and p.check_required_items(winning_items):  # TODO: change this so it checks item location once the player drops
             p.victory = True
