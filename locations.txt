@@ -19,14 +19,14 @@ brief description
 detailed description
 descriptions end
 ----------
-3 LIBRARY-RECEPTION
+0 LIBRARY-RECEPTION
 librarian.txt
 10
 You are standing at the front door of the library.
 detailed description
 descriptions end
 ----------
-4 QUAD
+1 QUAD
 mapper.txt
 5
 brief description
@@ -41,6 +41,7 @@ go to on a daily basis and can be used to access the map. Your friend state’s 
 must solve this riddle so they can see that you are capable of going to the exam:
 descriptions end
 ----------
+
 5 CAFETERIA
 slime.txt
 5
