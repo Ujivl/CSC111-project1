@@ -30,13 +30,16 @@ if __name__ == "__main__":
     possible_actions = ["look", "inventory", "score", "quit"]
     winning_location = w.get_location(2, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
+
     p.edit_inventory(w.item_list[0], "a")
     p.edit_inventory(w.item_list[1], "a")  # just adding two items to inventory to test stuff
+
     location = w.get_location(p.x, p.y)
     print("------------------------------------------------")
     print(f"YOU ARE CURRENTLY AT {location.name}. \n")
     check_been_here = location.print_info()
     print("------------------------------------------------")
+
     while not p.victory:
         location, past_location = w.get_location(p.x, p.y), location
         if location != past_location:
@@ -46,6 +49,7 @@ if __name__ == "__main__":
             if not check_been_here:
                 p.score += 5
             print("------------------------------------------------")
+
         if location == winning_location and p.check_required_items(winning_items):  # TODO: change this so it checks item location once the player drops
             p.victory = True
             break

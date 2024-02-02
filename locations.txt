@@ -1,5 +1,5 @@
 0-EXAM HALL
-wolf.txt phoenix.txt panther.txt
+wolf.txt
 5
 brief description
 detailed description
@@ -29,7 +29,6 @@ descriptions end
 4-QUAD
 mapper.txt
 5
-brief description
 You are standing in the middle of the quad. To the west lies the library, to the East, there is the UofT gym.
 You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
 you are multiple buildings where you spent last night studying for your exam. You look around and notice the campus is
@@ -44,7 +43,6 @@ descriptions end
 5-CAFETERIA
 slime.txt
 5
-brief description
 You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
 You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
 quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
@@ -55,8 +53,7 @@ descriptions end
 6-TTC
 goblin.txt
 5
-brief description
-You enter the TTC subway station. The CS building is positioned in the north, and to the west, you'll find the exam hall.
+You enter the TTC subway station. The CS building is positioned in the north, and to the west, you'll find the exam hall
 You enter the TTC subway station. The sounds of presto cards getting tapped envelopes your ears. The station buzzes
 with activity as commuters shuffle around going in and out of trains. During your insane studying journey last night,
 you remember you went over to TMU for a change in environment, taking the subway to arrive there. As you try to

@@ -27,10 +27,8 @@ class Character:
 
     """
     character_name: str
-    character_file: str
 
-    def __init__(self, character_file: str) -> None:
-        self.character_file = character_file
+    def __init__(self, character_name: str) -> None:
 
 
 class HostileCharacter(Character):
@@ -55,7 +53,7 @@ class Location:
         - # TODO
     """
     name: str
-    characters: list[Character]
+    characters: Character
     gold: int
     been_here: bool = False
     brief_intro: str
