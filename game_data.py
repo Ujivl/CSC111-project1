@@ -71,8 +71,21 @@ class Character:
     item_required: Optional[Item] = None
     reward = Item
     quest = str
+
     def __init__(self, character_name: str) -> None:
         self.character_name = character_name
+
+
+class DocileCharacter(Character):
+    """
+    temp just to fix adventure
+    """
+
+
+class HostileCharacter(Character):
+    """
+    temp just to fix adventure
+    """
 
 
 class Location:

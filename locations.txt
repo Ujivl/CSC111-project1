@@ -47,20 +47,23 @@ cooked meal, which you have not had in a while.
 descriptions end
 ----------
 4-BAHEN
+sadia.txt
+5
 You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
 You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
 upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
 technological exploration.You notice your fellow peers are frantically preparing for the exam, while you are unsure if
 you will even be able toattend the exam. Out of all the students, one student in particular catches your attention as
 they are crying alone inthe corner of the foyer. The cafeteria is up north, while down south is the Queen's Park.
+descriptions end
 ----------
 5-EXAM HALL
 wolf.txt
 5
 You have reached the Exam Hall. Queen's Park is to the east of you.
 You have reached the Exam Hall (i can rewrite this because its kinda garbage rn). If you have all your items you
-may write the exam and easily get 100,
-however if you do not you may face the chance of failing this course. Queen's Park is to the east of you.
+may write the exam and easily get 100, however if you do not you may face the chance of failing this course.
+Queen's Park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
@@ -79,4 +82,5 @@ goblin.txt
 4
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
+descriptions end
 locations end
