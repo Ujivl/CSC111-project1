@@ -27,12 +27,9 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
-    possible_actions = ["look", "inventory", "score", "quit"]
+    possible_actions = ["look", "inventory", "score", "quit", "pick up"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
-
-    p.edit_inventory(w.item_list[0], "a")
-    p.edit_inventory(w.item_list[1], "a")  # just adding two items to inventory to test stuff
 
     print([x.name for x in winning_items])
     location = w.get_location(p.x, p.y)
@@ -70,7 +67,7 @@ if __name__ == "__main__":
                 p.y += directions[choice[3:]][1]
         elif "go " in choice:
             print("invalid direction\n")
-        elif choice in possible_actions or choice in location.available_actions():  # TODO: add available_actions()
+        elif choice in possible_actions:
             if choice == "quit":
                 break
             elif choice == "look":
@@ -80,6 +77,12 @@ if __name__ == "__main__":
                 p.show_inventory()
             elif choice == "score":
                 print(f"SCORE: {p.score}")
+            elif choice == "pick up":
+                if location.item_id != -1:
+                    p.edit_inventory(w.item_list[location.item_id], "a")
+                    print(f"you have picked up the follwing item: {w.item_list[location.item_id].name}")
+                else:
+                    print("There is nothing to pick up here.")
             else:
                 w.do_action(p, location, choice)
         else:

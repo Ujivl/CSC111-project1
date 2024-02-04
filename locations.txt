@@ -1,6 +1,5 @@
 0-LIBRARY RECEPTION
-librarian.txt
-10
+2
 You are standing at the front door of the library.
 You are now inside the library. Around you are happiness deprived students, all wishing exam season was over so they
 could finally relax. You examine the desk you were working at last night and see the mountain of eraser debris on the
@@ -8,12 +7,10 @@ floor. Your eraser, now the mere size of a pea, helped you to make the perfect c
 to you, but you did not see her in the room prior to this, almost as if she appeared from thin air. She scolds you for
 making a mess in her library and asks you to clean up after yourself. You apologise profusely and start cleaning the
 eraser debris.
-detailed description
 descriptions end
 ----------
 1-QUAD
-mapper.txt
-5
+-1
 You are standing in the middle of the quad. To the west lies the library, to the East, there is the UofT gym.
 You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
 you are multiple buildings where you spent last night studying for your exam. You look around and notice the campus is
@@ -26,8 +23,7 @@ must solve this riddle so they can see that you are capable of going to the exam
 descriptions end
 ----------
 2-GYM
-mimick.txt
-5
+0
 brief description
 You are now inside of the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
 mental and physical hardships. The gym, equipped with the latest technology gives students an opportunity to improve
@@ -37,8 +33,7 @@ escapades to focus on studying. The quad, where you began your journey, lies to 
 descriptions end
 ----------
 3-CAFETERIA
-slime.txt
-5
+-1
 You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
 You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
 quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
@@ -47,8 +42,7 @@ cooked meal, which you have not had in a while.
 descriptions end
 ----------
 4-BAHEN
-sadia.txt
-5
+1
 You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
 You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
 upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
@@ -58,8 +52,7 @@ they are crying alone inthe corner of the foyer. The cafeteria is up north, whil
 descriptions end
 ----------
 5-EXAM HALL
-wolf.txt
-5
+-1
 You have reached the Exam Hall. Queen's Park is to the east of you.
 You have reached the Exam Hall (i can rewrite this because its kinda garbage rn). If you have all your items you
 may write the exam and easily get 100, however if you do not you may face the chance of failing this course.
@@ -67,18 +60,15 @@ Queen's Park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
-goblin.txt
-5
+3
 You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall.
-You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall
-You enter the TTC subway station. The sounds of birds envelopes your ears. The park buzzes with activity as student
-shuffle around. During your insane studying journey last night, you remember you went to Queen's Park for a change in
-environment. As you try to remember what happened, you notice a faint aroma of freshly brewed coffee lingering in the
-air. The CS building is positioned in the north, and to the west, you'll find the exam hall.
+The sounds of birds envelopes your ears. The park buzzes with activity as student shuffle around. During your insane
+studying journey last night, you remember you went to Queen's Park for a change in environment. As you try to remember
+what happened, you notice a faint aroma of freshly brewed coffee lingering in the air. The CS building is positioned in
+the north, and to the west, you'll find the exam hall.
 descriptions end
 ----------
 7-Random room
-goblin.txt
 4
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.

@@ -34,7 +34,13 @@ class Item:
         - self.name != ""
     """
 
-    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
+    name: str
+    item_id: int
+    start_position: int
+    target_position: int
+    target_points: int
+
+    def __init__(self, name: str, item_id: int, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
         """
 
@@ -48,44 +54,30 @@ class Item:
         # All item objects in your game MUST be represented as an instance of this class.
 
         self.name = name
+        self.item_id = item_id
         self.start_position = start
         self.target_position = target
         self.target_points = target_points
 
 
+"""
 class Character:
-    """
-    Class representing a character and the item required for said Character.
 
-    Instance Attributes:
-        - character_name: the name of the character represented as a string
-        - item_required: the required item to obtain the reward from a character
-        - reward: the reward the player recieves upon completing the character's request
-        - quest: the task designated by the character to the player to obtain the reward
-    Representation Invariants:
-        - self.character_name != ""
-        - self.quest != ""
-        - self.reward is not None
-    """
     character_name: str
     item_required: Optional[Item] = None
-    reward = Item
-    quest = str
+    reward: Optional[Item] = None
+    dialogue1: str
+    dialogue2: str
 
-    def __init__(self, character_name: str) -> None:
+    def __init__(self, character_name: str, item_required: Optional[Item], reward: Optional[Item],
+                 dialogue1: str, dialogue2: str) -> None:
+
         self.character_name = character_name
-
-
-class DocileCharacter(Character):
-    """
-    temp just to fix adventure
-    """
-
-
-class HostileCharacter(Character):
-    """
-    temp just to fix adventure
-    """
+        self.item_required = item_required
+        self.reward = reward
+        self.dialogue1 = dialogue1
+        self.dialogue2 = dialogue2
+"""
 
 
 class Location:
@@ -105,31 +97,22 @@ class Location:
         - self.name != ""
     """
     name: str
-    characters: Character
-    gold: int
+    item_id: int
     been_here: bool = False
     brief_intro: str
     long_intro: str
     location_number: int
 
-    def __init__(self, name: str, location_number: int, character_files: list[str], gold: int,
+    def __init__(self, name: str, location_number: int, item_id: int,
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
         self.name = name
+        self.item_id = item_id
         self.location_number = location_number
-        self.gold = gold
         self.brief_intro = brief_intro
         self.long_intro = long_intro
 
-        for file in character_files:
-            with open(file) as f:
-                for line_n in f:
-                    line = line_n.strip()
-                    if line.isdigit() and line == 0:
-                        self.character = DocileCharacter(file)
-                    elif line.isdigit() and line == 1:
-                        self.character = HostileCharacter(file)
         # NOTES:
         # Data that could be associated with each Location object:
         # a position in the world map,
@@ -145,8 +128,6 @@ class Location:
         #
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
-
-        # TODO: Complete this method
 
     def print_info(self) -> bool:
         """
@@ -271,7 +252,6 @@ class World:
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
             location = Location(l1[1], int(l1[0]),
-                                self.read_file_line(location_data).split(),
                                 int(self.read_file_line(location_data)),
                                 self.read_file_line(location_data),
                                 "")
@@ -281,18 +261,22 @@ class World:
             while line != "descriptions end\n":
                 detailed_description += line
                 line = location_data.readline()
+
             location.long_intro = detailed_description
 
             self.locations_list.append(location)
             ending_line = self.read_file_line(location_data)
 
         while ending_line != "items end":
-            item = Item(self.read_file_line(items_data),
+            l1 = self.read_file_line(items_data).split("_")
+            item = Item(l1[0],
+                        int(l1[1]),
                         int(self.read_file_line(items_data)),
                         int(self.read_file_line(items_data)),
                         int(self.read_file_line(items_data)))
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
+
 
     def read_file_line(self, data: TextIO) -> str:
         """
