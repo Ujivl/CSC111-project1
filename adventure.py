@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
             elif choice == "look":
                 location.been_here = False
-                location.print_info()
+                location.print_info(items_in_world)
 
             elif choice == "inventory":
                 p.show_inventory()
