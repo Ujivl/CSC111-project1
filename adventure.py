@@ -88,6 +88,7 @@ if __name__ == "__main__":
                     if item_id != -1 and choice[8:] == w.item_list[item_id].name:
                         p.edit_inventory(w.item_list[item_id], "a")
                         print(f"you have picked up the follwing item: {choice[8:]}")
+                        location.remove_item_id(item_id)
                         # TODO: remove item from location
                     else:
                         print("This item is not available to pick up here")
@@ -96,6 +97,7 @@ if __name__ == "__main__":
                 item_drop_id = items_in_world.index(choice[5:])
                 p.edit_inventory(w.item_list[item_drop_id], "r")
                 print(f"you have dropped the follwing item: {choice[5:]}")
+                location.add_item_id(item_drop_id)
                 # TODO: add item to location
 
             else:

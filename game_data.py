@@ -157,7 +157,17 @@ class Location:
         # function header (e.g. add in parameters, complete the type contract) as needed
 
         # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
+    def add_item_id(self, item_id: int) -> None:
+        """
+        adds an item id from a location
+        """
+        self.item_ids.append(item_id)
 
+    def remove_item_id(self, item_id: int) -> None:
+        """
+        removes an item id from a location
+        """
+        self.item_ids.remove(item_id)
 
 class Player:
     """
