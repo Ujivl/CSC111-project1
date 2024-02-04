@@ -25,7 +25,7 @@ from game_data import World, Player  # , Item, Location,
 
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(2, 1)  # TODO: file dependent (not entirely sure what to change starting location to, updated map and locations)
+    p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
@@ -33,6 +33,7 @@ if __name__ == "__main__":
 
     p.edit_inventory(w.item_list[0], "a")
     p.edit_inventory(w.item_list[1], "a")  # just adding two items to inventory to test stuff
+
     print([x.name for x in winning_items])
     location = w.get_location(p.x, p.y)
     print("------------------------------------------------")
