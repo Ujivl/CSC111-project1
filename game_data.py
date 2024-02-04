@@ -59,7 +59,6 @@ class Item:
         self.target_position = target
         self.target_points = target_points
 
-
 """
 class Character:
 
@@ -97,18 +96,18 @@ class Location:
         - self.name != ""
     """
     name: str
-    item_id: int
+    item_ids: list[int]
     been_here: bool = False
     brief_intro: str
     long_intro: str
     location_number: int
 
-    def __init__(self, name: str, location_number: int, item_id: int,
+    def __init__(self, name: str, location_number: int, item_ids: list[int],
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
         self.name = name
-        self.item_id = item_id
+        self.item_ids = item_ids
         self.location_number = location_number
         self.brief_intro = brief_intro
         self.long_intro = long_intro
@@ -129,7 +128,7 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-    def print_info(self) -> bool:
+    def print_info(self, items) -> bool:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
@@ -138,6 +137,8 @@ class Location:
         """
         if self.been_here:
             print(self.brief_intro)
+            print("items in this location: ")
+            [print(items[x]) for x in self.item_ids if x != -1]
             return True
         else:
             print(self.long_intro)
@@ -190,15 +191,14 @@ class Player:
 
     def edit_inventory(self, item: Item, add_remove: str) -> None:
         """
-        adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r,
-        raise index error
+        adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
         """
         if add_remove == "a":
             self.inventory.append(item)
         elif item in self.inventory and add_remove == "r":
             self.inventory.remove(item)
         else:
-            raise IndexError
+            print("you do not have this item")
 
     def check_required_items(self, winning_items: set[Item]) -> bool:
         """
@@ -252,7 +252,7 @@ class World:
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
             location = Location(l1[1], int(l1[0]),
-                                int(self.read_file_line(location_data)),
+                                [int(self.read_file_line(location_data))],
                                 self.read_file_line(location_data),
                                 "")
 
@@ -313,10 +313,6 @@ class World:
                 return i
         return None
 
-    def do_action(self, p: Player, location: Location, choice: str):
-        """
-        Does an action
-        """
 
 
 """

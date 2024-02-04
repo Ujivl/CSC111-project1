@@ -27,15 +27,16 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
-    possible_actions = ["look", "inventory", "score", "quit", "pick up"]
+    possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
+    items_in_world = [item.name for item in w.item_list]
 
     print([x.name for x in winning_items])
     location = w.get_location(p.x, p.y)
     print("------------------------------------------------")
     print(f"YOU ARE CURRENTLY AT {location.name}. \n")
-    check_been_here = location.print_info()
+    check_been_here = location.print_info(items_in_world)
     print("------------------------------------------------")
 
     while not p.victory:
@@ -43,7 +44,7 @@ if __name__ == "__main__":
         if location != past_location:
             print("------------------------------------------------")
             print(f"YOU ARE CURRENTLY AT {location.name}. \n")
-            check_been_here = location.print_info()
+            check_been_here = location.print_info(items_in_world)
             if not check_been_here:
                 p.score += 5
             print("------------------------------------------------")
@@ -67,23 +68,37 @@ if __name__ == "__main__":
                 p.y += directions[choice[3:]][1]
         elif "go " in choice:
             print("invalid direction\n")
-        elif choice in possible_actions:
+        elif any([actions in choice for actions in possible_actions]):
+
             if choice == "quit":
                 break
+
             elif choice == "look":
                 location.been_here = False
                 location.print_info()
+
             elif choice == "inventory":
                 p.show_inventory()
+
             elif choice == "score":
                 print(f"SCORE: {p.score}")
-            elif choice == "pick up":
-                if location.item_id != -1:
-                    p.edit_inventory(w.item_list[location.item_id], "a")
-                    print(f"you have picked up the follwing item: {w.item_list[location.item_id].name}")
-                else:
-                    print("There is nothing to pick up here.")
+
+            elif "pick up" in choice and choice[8:] in items_in_world:
+                for item_id in location.item_ids:
+                    if item_id != -1 and choice[8:] == w.item_list[item_id].name:
+                        p.edit_inventory(w.item_list[item_id], "a")
+                        print(f"you have picked up the follwing item: {choice[8:]}")
+                        # TODO: remove item from location
+                    else:
+                        print("This item is not available to pick up here")
+
+            elif "drop" in choice and choice[5:] in items_in_world:
+                item_drop_id = items_in_world.index(choice[5:])
+                p.edit_inventory(w.item_list[item_drop_id], "r")
+                print(f"you have dropped the follwing item: {choice[5:]}")
+                # TODO: add item to location
+
             else:
-                w.do_action(p, location, choice)
+                print("invalid action")
         else:
             print("what are you yappin about bro\n")
