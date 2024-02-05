@@ -128,22 +128,20 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-    def print_info(self, items) -> bool:
+    def print_info(self, items) -> str:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
         has been to the location before.
 
         """
+
+        items = ", ".join([items[x] for x in self.item_ids if x != -1])
         if self.been_here:
-            print(self.brief_intro)
-            print("items in this location: ")
-            [print(items[x]) for x in self.item_ids if x != -1]
-            return True
+            return f"{self.brief_intro} \nitems in this location: {items}"
         else:
-            print(self.long_intro)
             self.been_here = True
-            return False
+            return f"{self.long_intro} \nitems in this location: {items}"
 
     def available_actions(self):
         """
@@ -199,16 +197,18 @@ class Player:
         self.score = 0
         self.max_moves = 100
 
-    def edit_inventory(self, item: Item, add_remove: str) -> None:
+    def edit_inventory(self, item: Item, add_remove: str) -> bool:
         """
         adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
         """
         if add_remove == "a":
             self.inventory.append(item)
+            return True
         elif item in self.inventory and add_remove == "r":
             self.inventory.remove(item)
+            return True
         else:
-            print("you do not have this item")
+            return False
 
     def check_required_items(self, winning_items: set[Item]) -> bool:
         """
@@ -220,15 +220,15 @@ class Player:
         else:
             return False
 
-    def show_inventory(self):
+    def show_inventory(self) -> str:
         """
         prints out all the items in the inventory in a neat format.
         """
+        item_list = []
         if not self.inventory:
-            print("you currently have no items in your inventory")
+            return "you currently have no items in your inventory"
         else:
-            for item in self.inventory:
-                print(f"[{item.name}]")
+            return "".join([f"[{item.name}]\n" for item in self.inventory])
 
 
 class World:
