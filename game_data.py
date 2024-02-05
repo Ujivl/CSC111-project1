@@ -59,6 +59,7 @@ class Item:
         self.target_position = target
         self.target_points = target_points
 
+
 """
 class Character:
 
@@ -167,6 +168,7 @@ class Location:
         """
         self.item_ids.remove(item_id)
 
+
 class Player:
     """
     A Player in the text advanture game.
@@ -224,7 +226,6 @@ class Player:
         """
         prints out all the items in the inventory in a neat format.
         """
-        item_list = []
         if not self.inventory:
             return "you currently have no items in your inventory"
         else:
@@ -287,7 +288,6 @@ class World:
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
 
-
     def read_file_line(self, data: TextIO) -> str:
         """
         returns a line of the data file without the newline (made for more neat code).
@@ -322,7 +322,6 @@ class World:
             if location_number == i.location_number:
                 return i
         return None
-
 
 
 """

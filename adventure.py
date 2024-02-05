@@ -2,13 +2,13 @@
 
 TO DO LIST:
 
-- dropping items and picking up items (BASE GAME)
-    - when giving descriptions there should also be a line that says what items are in that location
-- score addition, when visiting a new place score should be increased by some value (BASE GAME)
+- dropping items and picking up items (BASE GAME) (DONE)
+    - when giving descriptions there should also be a line that says what items are in that location (DONE)
+- score addition, when visiting a new place score should be increased by some value (BASE GAME) (DONE)
     - this should also include the fetch quest rewards (we might have to change gold to score just to simplify)
-- limited amount of moves, this should go down by one when the player changes location (BASE GAME)
+- limited amount of moves, this should go down by one when the player changes location (BASE GAME) (DONE)
     - maybe add a time command that translates amount of moves to time to tell the player how long they have
-- lose when amount of moves reach zero, break out of while loop (BASE GAME)
+- lose when amount of moves reach zero, break out of while loop (BASE GAME) (DONE)
 
 - Music (enchancements)
 - characters (enhancements)
@@ -52,7 +52,8 @@ if __name__ == "__main__":
         if location != past_location:
             format_and_print(f"YOU ARE CURRENTLY AT {location.name}. \n" + location.print_info(items_in_world))
 
-        if location == winning_location and p.check_required_items(winning_items):  # TODO: change this so it checks item location once the player drops
+        # TODO: change this so it checks item location once the player drops
+        if location == winning_location and p.check_required_items(winning_items):
             p.victory = True
             break
 
