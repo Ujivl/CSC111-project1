@@ -65,7 +65,7 @@ if __name__ == "__main__":
             format_and_print("GAME OVER: You have exceeded the maximum number of moves.")
             break
 
-        if "go " in choice and choice[3:] in directions.keys():
+        if "go " in choice and choice[3:] in directions:
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
                 format_and_print("That way is blocked")
             else:
