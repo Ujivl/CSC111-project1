@@ -143,7 +143,7 @@ class Location:
             items = "There are currently no items in this location"
 
         if self.been_here:
-            return f"{self.brief_intro} \n{items}"
+            return f"{self.brief_intro} \n\n{items}"
         else:
             self.been_here = True
             return f"{self.long_intro} \n{items}"
@@ -212,16 +212,6 @@ class Player:
             return True
         elif item in self.inventory and add_remove == "r":
             self.inventory.remove(item)
-            return True
-        else:
-            return False
-
-    def check_required_items(self, winning_items: set[Item]) -> bool:
-        """
-        checks to see if the player has reached ending location with all the objects.
-        """
-        if all([item in self.inventory for item in winning_items]):
-            print("items reached end")
             return True
         else:
             return False
