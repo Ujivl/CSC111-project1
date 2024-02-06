@@ -137,12 +137,16 @@ class Location:
 
         """
 
-        items = ", ".join([items[x] for x in self.item_ids if x != -1])
+        items = "items in this location: " + (", ".join([items[x] for x in self.item_ids if x != -1]))
+
+        if items == "items in this location: ":
+            items = "There are currently no items in this location"
+
         if self.been_here:
-            return f"{self.brief_intro} \nitems in this location: {items}"
+            return f"{self.brief_intro} \n{items}"
         else:
             self.been_here = True
-            return f"{self.long_intro} \nitems in this location: {items}"
+            return f"{self.long_intro} \n{items}"
 
     def available_actions(self):
         """

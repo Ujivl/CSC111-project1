@@ -52,8 +52,7 @@ if __name__ == "__main__":
         if location != past_location:
             format_and_print(f"YOU ARE CURRENTLY AT {location.name}. \n" + location.print_info(items_in_world))
 
-        # TODO: change this so it checks item location once the player drops
-        if location == winning_location and p.check_required_items(winning_items):
+        if location == winning_location and all(item.item_id in location.item_ids for item in winning_items):
             p.victory = True
             break
 
@@ -116,3 +115,6 @@ if __name__ == "__main__":
 
         else:
             format_and_print("what are you yappin about bro")
+
+    if p.victory:
+        format_and_print("CONGRATULAIONS!!! you managed to write the exam in time and ace it!")
