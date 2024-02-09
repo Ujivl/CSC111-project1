@@ -39,7 +39,6 @@ class Item:
     start_position: int
     target_position: int
     target_points: int
-    can_pick_up: bool = False
 
     def __init__(self, name: str, item_id: int, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
@@ -120,7 +119,7 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-    def print_info(self, items) -> str:
+    def print_info(self, items: list[str], character_dialogue: str) -> str:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
@@ -134,10 +133,10 @@ class Location:
             items = "There are currently no items in this location"
 
         if self.been_here:
-            return f"{self.brief_intro} \n\n{items}"
+            return f"{self.brief_intro} \n{character_dialogue} \n\n\n{items}"
         else:
             self.been_here = True
-            return f"{self.long_intro} \n{items}"
+            return f"{self.long_intro} \n{character_dialogue} \n\n{items}"
 
     def add_item_id(self, item_id: int) -> None:
         """
@@ -209,27 +208,37 @@ class Character:
     """
     character class
     """
+    character_id: int
     starting_dialogue: str
     ending_dialogue: str
     required_conditions: list[any]
     finished_quest: bool = False
 
-    def __init__(self, starting_dialogue: str, ending_dialogue: str, required_conditions: list[any]):
+    def __init__(self, character_id: int, required_conditions: list[any], starting_dialogue: str, ending_dialogue: str):
+        self.character_id = character_id
         self.starting_dialogue = starting_dialogue
         self.ending_dialogue = ending_dialogue
         self.required_conditions = required_conditions
 
-    def check_quest(self, p: Player, location: Location, choice: str) -> any:
+    def check_quest(self, p: Player, location: Location, answer: str):
         """
         blah
         """
-        self.finished_quest = ((self.required_conditions[0] == "score" and p.score >= self.required_conditions[1])
-                               or ((self.required_conditions[0] == "item" and
-                                    self.required_conditions[1] in location.item_ids)
-                               or (self.required_conditions[0] == "code" and
-                                   choice == self.required_conditions[1])))
 
-        return self.finished_quest
+        self.finished_quest = ((self.required_conditions[0] == "score" and p.score >= int(self.required_conditions[1]))
+                               or ((self.required_conditions[0] == "item" and
+                                    int(self.required_conditions[1]) in location.item_ids)
+                               or (self.required_conditions[0] == "code" and
+                                   answer == self.required_conditions[1])))
+
+    def return_dialogue(self) -> str:
+        """
+        Bruh
+        """
+        if self.finished_quest:
+            return self.ending_dialogue
+        else:
+            return self.starting_dialogue
 
 
 class Consumable(Item):
@@ -325,10 +334,15 @@ class World:
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
 
+        character_id = 0
         while ending_line != "characters end":
-
+            character = Character(character_id,
+                                  self.read_file_line(characters_data).split("_"),
+                                  self.read_file_line(characters_data),
+                                  self.read_file_line(characters_data))
+            self.character_list.append(character)
+            character_id += 1
             ending_line = self.read_file_line(characters_data)
-            continue
 
         map_data.close()
         location_data.close()
