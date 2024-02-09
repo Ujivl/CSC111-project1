@@ -20,7 +20,7 @@ TO DO LIST:
 
 """
 
-from game_data import World, Player  # , Item, Location,
+from game_data import World, Player, Consumable
 # from pygame import mixer
 
 
@@ -37,20 +37,22 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
-    possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop"]
+    possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
 
     location = w.get_location(p.x, p.y)
-    format_and_print(f"YOU ARE CURRENTLY AT {location.name}. \n" + location.print_info(items_in_world))
+    format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                     f"\n{location.print_info(items_in_world)}")
 
     while not p.victory:
         location, past_location = w.get_location(p.x, p.y), location
         if not location.been_here:
             p.score += 5
         if location != past_location:
-            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. \n" + location.print_info(items_in_world))
+            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                             f"\n{location.print_info(items_in_world)}")
 
         if location == winning_location and all(item.item_id in location.item_ids for item in winning_items):
             p.victory = True
@@ -81,7 +83,8 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and choice == "look":
             location.been_here = False
-            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. \n" + location.print_info(items_in_world))
+            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                             f"\n{location.print_info(items_in_world)}")
 
         elif choice_in_possible_actions and choice == "inventory":
             format_and_print(p.show_inventory())
@@ -92,23 +95,33 @@ if __name__ == "__main__":
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
             for item_id in location.item_ids:
-                if item_id == -1:
+                if item_id == -1 or picked_up_item:
                     continue
                 elif choice[8:] == w.item_list[item_id].name:
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
+                    w.item_list[item_id].picked_up = picked_up_item
                     format_and_print(f"you have picked up the following item: {choice[8:]}")
                     location.remove_item_id(item_id)
             if not picked_up_item:
                 format_and_print("This item is not available to pick up here")
 
         elif choice_in_possible_actions and "drop" in choice and choice[5:] in items_in_world:
-            item_drop_id = items_in_world.index(choice[5:])
-            dropped_item = p.edit_inventory(w.item_list[item_drop_id], "r")
+            item_id = items_in_world.index(choice[5:])
+            dropped_item = p.edit_inventory(w.item_list[item_id], "r")
             if dropped_item:
-                location.add_item_id(item_drop_id)
+                location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
+                p.score += w.item_list[item_id].return_points(location.location_number)
             else:
                 format_and_print("you do not have that item in your inventory")
+
+        elif choice_in_possible_actions and "use" in choice and choice[4:] in items_in_world:
+            item_id = items_in_world.index(choice[4:])
+            if isinstance(w.item_list[item_id], Consumable) and w.item_list[item_id] in p.inventory:
+                format_and_print(w.item_list[item_id].apply_properties(p))
+                p.edit_inventory(w.item_list[item_id], "r")
+            else:
+                format_and_print("This item is not usable")
 
         elif choice_in_possible_actions:
             format_and_print("invalid action: you may have mispelled your action")

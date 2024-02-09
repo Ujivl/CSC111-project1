@@ -25,7 +25,7 @@ descriptions end
 2-GYM
 0
 brief description
-You are now inside of the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
+You are now inside the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
 mental and physical hardships. The gym, equipped with the latest technology gives students an opportunity to improve
 their mental and physical health. There are little to no students to be seen. The air smells particularly pungent
 today, but you do not take notice of it. You suddenly remember that you used the treadmill during one of your many
@@ -33,7 +33,7 @@ escapades to focus on studying. The quad, where you began your journey, lies to 
 descriptions end
 ----------
 3-CAFETERIA
--1
+3 3 3
 You enter the cafeteria. To the north, you'll find the quad, and to the south lies the CS building.
 You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
 quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
@@ -60,7 +60,7 @@ Queen's Park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
-3
+4
 You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall.
 The sounds of birds envelopes your ears. The park buzzes with activity as student shuffle around. During your insane
 studying journey last night, you remember you went to Queen's Park for a change in environment. As you try to remember
@@ -68,8 +68,8 @@ what happened, you notice a faint aroma of freshly brewed coffee lingering in th
 the north, and to the west, you'll find the exam hall.
 descriptions end
 ----------
-7-Random room
-4
+7-alley way
+5
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 descriptions end

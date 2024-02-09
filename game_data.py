@@ -59,25 +59,15 @@ class Item:
         self.target_position = target
         self.target_points = target_points
 
-
-"""
-class Character:
-
-    character_name: str
-    item_required: Optional[Item] = None
-    reward: Optional[Item] = None
-    dialogue1: str
-    dialogue2: str
-
-    def __init__(self, character_name: str, item_required: Optional[Item], reward: Optional[Item],
-                 dialogue1: str, dialogue2: str) -> None:
-
-        self.character_name = character_name
-        self.item_required = item_required
-        self.reward = reward
-        self.dialogue1 = dialogue1
-        self.dialogue2 = dialogue2
-"""
+    def return_points(self, location_id: int) -> int:
+        """
+        Returns the points in the if the item reached its target location, then makes the points 0.
+        """
+        if self.target_position == location_id:
+            self.target_points, points = 0, self.target_points
+            return points
+        else:
+            return 0
 
 
 class Location:
@@ -103,12 +93,12 @@ class Location:
     long_intro: str
     location_number: int
 
-    def __init__(self, name: str, location_number: int, item_ids: list[int],
+    def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
         self.name = name
-        self.item_ids = item_ids
+        self.item_ids = [int(x) for x in item_ids]
         self.location_number = location_number
         self.brief_intro = brief_intro
         self.long_intro = long_intro
@@ -226,6 +216,33 @@ class Player:
             return "".join([f"[{item.name}]\n" for item in self.inventory])
 
 
+class Consumable(Item):
+    """
+    Sub-Class for the consumable items
+    """
+    properties: list[str]
+
+    def __init__(self, name: str, item_id: int, properties: list[str],
+                 start: int, target: int, target_points: int) -> None:
+        """Initialize a new item.
+        """
+
+        super().__init__(name, item_id, start, target, target_points)
+        self.properties = properties
+
+    def apply_properties(self, p: Player) -> str:
+        """
+        Applies the properties of the item
+        """
+        if self.properties[0] == "moves":
+            p.max_moves += int(self.properties[2])
+            return self.properties[1]
+        else:
+            p.x = int(self.properties[2])
+            p.y = int(self.properties[3])
+            return self.properties[1]
+
+
 class World:
     """A text adventure game world storing all location, item and map data.
 
@@ -257,7 +274,7 @@ class World:
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
             location = Location(l1[1], int(l1[0]),
-                                [int(self.read_file_line(location_data))],
+                                self.read_file_line(location_data).split(" "),
                                 self.read_file_line(location_data),
                                 "")
 
@@ -274,11 +291,20 @@ class World:
 
         while ending_line != "items end":
             l1 = self.read_file_line(items_data).split("_")
-            item = Item(l1[0],
-                        int(l1[1]),
-                        int(self.read_file_line(items_data)),
-                        int(self.read_file_line(items_data)),
-                        int(self.read_file_line(items_data)))
+            consumable = self.read_file_line(items_data)
+            if consumable == "-":
+                item = Item(l1[0],
+                            int(l1[1]),
+                            int(self.read_file_line(items_data)),
+                            int(self.read_file_line(items_data)),
+                            int(self.read_file_line(items_data)))
+            else:
+                item = Consumable(l1[0],
+                                  int(l1[1]),
+                                  consumable.split("_"),
+                                  int(self.read_file_line(items_data)),
+                                  int(self.read_file_line(items_data)),
+                                  int(self.read_file_line(items_data)))
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
 
