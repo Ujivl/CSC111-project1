@@ -1,4 +1,4 @@
-0-LIBRARY RECEPTION
+0-LIBRARY
 2
 You are standing at the front door of the library.
 You are now inside the library. Around you are happiness deprived students, all wishing exam season was over so they

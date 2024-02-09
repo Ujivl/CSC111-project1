@@ -59,6 +59,8 @@ class Item:
         self.start_position = start
         self.target_position = target
         self.target_points = target_points
+        if self.item_id == 3:
+            self.can_pick_up = True
 
     def return_points(self, location_id: int) -> int:
         """
@@ -217,6 +219,27 @@ class Player:
             return "".join([f"[{item.name}]\n" for item in self.inventory])
 
 
+class Character:
+    """
+    character class
+    """
+    starting_dialogue: str
+    ending_dialogue: str
+    required_conditions: list[any]
+    finished_quest: bool = False
+
+    def __init__(self, starting_dialogue: str, ending_dialogue: str, required_conditions: list[any]):
+        self.starting_dialogue = starting_dialogue
+        self.ending_dialogue = ending_dialogue
+        self.required_conditions = required_conditions
+
+    def check_quest(self, p: Player, location: Location) -> any:
+        if self.required_conditions[0] == "score" and p.score >= self.required_conditions[1]:
+            self.finished_quest = True
+        elif self.required_conditions[0] == "item" and self.required_conditions[1] in location.item_ids:
+            self.finished_quest = True
+
+
 class Consumable(Item):
     """
     Sub-Class for the consumable items
@@ -258,7 +281,7 @@ class World:
     map: list[list]
     locations_list: list[Location]
 
-    def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
+    def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO, characters_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
 
@@ -269,6 +292,7 @@ class World:
         self.map = self.load_map(map_data)
         self.locations_list = []
         self.item_list = []
+        self.character_list = []
         ending_line = ""
 
         while ending_line != "locations end":
@@ -309,9 +333,15 @@ class World:
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
 
+        while ending_line != "characters end":
+
+            ending_line = self.read_file_line(characters_data)
+            continue
+
         map_data.close()
         location_data.close()
         items_data.close()
+        characters_data.close()
 
     def read_file_line(self, data: TextIO) -> str:
         """
