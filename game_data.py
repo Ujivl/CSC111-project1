@@ -103,7 +103,7 @@ class Location:
     long_intro: str
     been_here: bool = False
 
-    def __init__(self, name: str, location_number: int, item_ids: list[int],
+    def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
@@ -152,7 +152,7 @@ class Location:
         """
         adds an item id from a location
 
-        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
         >>> location.add_item_id(3)
         >>> location.item_ids == [5,6] + [3]
         True
@@ -163,12 +163,12 @@ class Location:
         """
         removes an item id from a location
 
-        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
         >>> location.remove_item_id(3)
         >>> location.item_ids ==  [5, 6]
         True
 
-        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
         >>> location.remove_item_id(5)
         >>> location.item_ids == [6]
         True

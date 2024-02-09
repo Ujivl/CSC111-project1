@@ -29,6 +29,7 @@ mixer.music.load('stranger-things-124008.mp3')
 mixer.music.set_volume(0.2)
 mixer.music.play()
 
+
 def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
     """
     should make the can pick up item true if the conditions are passed. THis is based on the item itself
