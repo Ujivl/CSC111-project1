@@ -59,8 +59,6 @@ class Item:
         self.start_position = start
         self.target_position = target
         self.target_points = target_points
-        if self.item_id == 3:
-            self.can_pick_up = True
 
     def return_points(self, location_id: int) -> int:
         """
@@ -91,10 +89,10 @@ class Location:
     """
     name: str
     item_ids: list[int]
-    been_here: bool = False
     brief_intro: str
     long_intro: str
     location_number: int
+    been_here: bool = False
 
     def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
@@ -141,18 +139,6 @@ class Location:
             self.been_here = True
             return f"{self.long_intro} \n{items}"
 
-    def available_actions(self):
-        """
-        Return the available actions in this location.
-        The actions should depend on the items available in the location
-        and the x,y position of this location on the world map.
-        """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
-
-        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
     def add_item_id(self, item_id: int) -> None:
         """
         adds an item id from a location
@@ -233,11 +219,17 @@ class Character:
         self.ending_dialogue = ending_dialogue
         self.required_conditions = required_conditions
 
-    def check_quest(self, p: Player, location: Location) -> any:
-        if self.required_conditions[0] == "score" and p.score >= self.required_conditions[1]:
-            self.finished_quest = True
-        elif self.required_conditions[0] == "item" and self.required_conditions[1] in location.item_ids:
-            self.finished_quest = True
+    def check_quest(self, p: Player, location: Location, choice: str) -> any:
+        """
+        blah
+        """
+        self.finished_quest = ((self.required_conditions[0] == "score" and p.score >= self.required_conditions[1])
+                               or ((self.required_conditions[0] == "item" and
+                                    self.required_conditions[1] in location.item_ids)
+                               or (self.required_conditions[0] == "code" and
+                                   choice == self.required_conditions[1])))
+
+        return self.finished_quest
 
 
 class Consumable(Item):
