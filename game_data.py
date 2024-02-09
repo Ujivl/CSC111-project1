@@ -95,14 +95,13 @@ class Location:
     location_number: int
     required_item: int
 
-    def __init__(self, name: str, location_number: int, required_item: int, item_ids: list[str],
+    def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
         self.name = name
         self.item_ids = [int(x) for x in item_ids]
         self.location_number = location_number
-        self.required_item = required_item
         self.brief_intro = brief_intro
         self.long_intro = long_intro
 
