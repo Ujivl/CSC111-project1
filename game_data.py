@@ -93,7 +93,6 @@ class Location:
     brief_intro: str
     long_intro: str
     location_number: int
-    required_item: int
 
     def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
@@ -140,6 +139,18 @@ class Location:
             self.been_here = True
             return f"{self.long_intro} \n{items}"
 
+    def available_actions(self):
+        """
+        Return the available actions in this location.
+        The actions should depend on the items available in the location
+        and the x,y position of this location on the world map.
+        """
+
+        # NOTE: This is just a suggested method
+        # i.e. You may remove/modify/rename this as you like, and complete the
+        # function header (e.g. add in parameters, complete the type contract) as needed
+
+        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
     def add_item_id(self, item_id: int) -> None:
         """
         adds an item id from a location
