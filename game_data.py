@@ -63,6 +63,15 @@ class Item:
     def return_points(self, location_id: int) -> int:
         """
         Returns the points in if the item reached its target location, then makes the points 0.
+
+        >>> item = Item('book', 2, 1, 4, 50 )
+        >>> samp_location_id = 4
+        >>> Item.return_points(item, location_id)
+        50
+        >>> item = Item('cheat sheet', 2, 1, 4, 50 )
+        >>> test_location_id = 3
+        >>> Item.return_points(item, location_id)
+        0
         """
         if self.target_position == location_id:
             self.target_points, points = 0, self.target_points
@@ -89,12 +98,12 @@ class Location:
     """
     name: str
     item_ids: list[int]
-    been_here: bool = False
+    location_number: int
     brief_intro: str
     long_intro: str
-    location_number: int
+    been_here: bool = False
 
-    def __init__(self, name: str, location_number: int, item_ids: list[str],
+    def __init__(self, name: str, location_number: int, item_ids: list[int],
                  brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
@@ -142,14 +151,30 @@ class Location:
     def add_item_id(self, item_id: int) -> None:
         """
         adds an item id from a location
+
+        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location.add_item_id(3)
+        >>> location.item_ids == [5,6] + [3]
+        True
         """
         self.item_ids.append(item_id)
 
     def remove_item_id(self, item_id: int) -> None:
         """
         removes an item id from a location
+
+        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location.remove_item_id(3)
+        >>> location.item_ids ==  [5, 6]
+        True
+
+        >>> location = Location('bahen', 6, [5, 6], "random brief intro", "random long intro")
+        >>> location.remove_item_id(5)
+        >>> location.item_ids == [6]
+        True
         """
-        self.item_ids.remove(item_id)
+        if item_id in self.item_ids:
+            self.item_ids.remove(item_id)
 
 
 class Player:
