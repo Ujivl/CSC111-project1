@@ -42,23 +42,16 @@ if __name__ == "__main__":
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
     location = w.get_location(p.x, p.y)
-    format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left) \n"
-                     f"\n{location.print_info(items_in_world,
-                          w.character_list[location.location_number].return_dialogue())}")
-    answer = ""
-    p.score = 1000
+    format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                     f"\n{location.print_info(items_in_world)}")
+
     while not p.victory:
         location, past_location = w.get_location(p.x, p.y), location
-
-        if location.location_number == 3 and w.item_list[3].item_id in location.item_ids:
-            w.character_list[location.location_number].finished_quest = False
-
         if not location.been_here:
             p.score += 5
         if location != past_location:
-            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left) \n"
-                             f"\n{location.print_info(items_in_world,
-                                  w.character_list[location.location_number].return_dialogue())}")
+            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                             f"\n{location.print_info(items_in_world)}")
 
         if location == winning_location and all(item.item_id in location.item_ids for item in winning_items):
             p.victory = True
@@ -67,8 +60,6 @@ if __name__ == "__main__":
         choice = input("\nEnter action: ").lower()
         print("\n")
         choice_in_possible_actions = any([actions in choice for actions in possible_actions])
-
-        w.character_list[location.location_number].check_quest(p, location, choice)
 
         if p.max_moves == 0:
             format_and_print("GAME OVER: You have exceeded the maximum number of moves.")
@@ -91,9 +82,8 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and choice == "look":
             location.been_here = False
-            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left) \n"
-                             f"\n{location.print_info(items_in_world,
-                                  w.character_list[location.location_number].return_dialogue())}")
+            format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
+                             f"\n{location.print_info(items_in_world)}")
 
         elif choice_in_possible_actions and choice == "inventory":
             format_and_print(p.show_inventory())
@@ -103,12 +93,13 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
-            print(w.character_list[location.location_number].finished_quest)
             for item_id in location.item_ids:
-                if (item_id == -1) or picked_up_item or (not w.character_list[location.location_number].finished_quest):
+                w.item_list[item_id].can_pick_up = w.character_list[location.location_number].check_quest()
+                if (item_id == -1) or picked_up_item or (not w.item_list[item_id].can_pick_up):
                     continue
                 elif choice[8:] == w.item_list[item_id].name:
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
+                    w.item_list[item_id].picked_up = picked_up_item
                     format_and_print(f"you have picked up the following item: {choice[8:]}")
                     location.remove_item_id(item_id)
             if not picked_up_item:
@@ -134,10 +125,6 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions:
             format_and_print("invalid action: you may have mispelled your action")
-
-        elif location.location_number == 6 and w.character_list[6].finished_quest:
-            format_and_print("the strange man's eyes glow from excitement, he lets go of the potion")
-            continue
 
         else:
             format_and_print("what are you yappin about bro")

@@ -1,31 +1,39 @@
+0_lost and found box
 item_6
 The lost and found box seems to be locked, maybe you can find a key?
 The box is now open, and you can see a collection of t-cards, wallets, water bottles and note books.
 --------------
+1_friend
 None_0
 u see your friend Looking through thEir bag Making sure they didn't fOrget their t-card, cheat sheet, and lucky peNcil.
 -
 --------------
+2_gym coach
 item_7
 U see the coach using your lucky pen. When u ask for it, he says "finders keepers!" maybe you can trade for it?
 The coach is now satisfied with the other pen, your lucky pen is free from his clutches.
 --------------
+3_barista
 score_10
 The barista is offering a limited stock extra potent coffee for some of your score!
 The barista seems somewhat melancholic now that she has no coffee to sell
 --------------
+4_TA
 item_3
 You see a tired TA clutching a key. She seems too tired to want to talk to you, maybe some caffeine might help?
 The T.A now rejuvinated by coffee does not care where the key goes, she's too busy solving a difficult proof question.
 --------------
+5_Sadia
 None_0
 Proffesor Sadia is settling students in and reminding them to bring out their t-card, cheat sheet, and writing utensils.
 -
 --------------
-code_lemon
+6_strange person
+code_bazinga
 A strange person offers you a potion in exchange for telling him his favorite fruit (Hint: your friend might know)
 The stranger exclaims that the potion will get you where you need to be, then runs around with lemons in both hands.
 --------------
+7_RAT KING
 item_5
 A giant rat sits on a throne made of garbage in front of you. He looks hungry...
 The RAT KING is appeased by your action, even though you're just a mortal.
