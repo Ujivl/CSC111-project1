@@ -309,10 +309,6 @@ class World:
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
 
-        map_data.close()
-        location_data.close()
-        items_data.close()
-
     def read_file_line(self, data: TextIO) -> str:
         """
         returns a line of the data file without the newline (made for more neat code).
