@@ -1,11 +1,36 @@
-character location
+0
 score_100000
-starting dialogue character 1
-ending dialogue character 1
+Your upper year friend approaches you. He has your cheat sheet, but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
 --------------
-character location
+1
 item_7
-starting dialogue character 1
-ending dialogue character 1
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
+--------------
+3
+item_7
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
+--------------
+4
+item_7
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
+--------------
+5
+item_7
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
+--------------
+6
+item_7
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
+--------------
+7
+item_7
+Your upper year friend approaches you. He has your cheat sheet but he wants coffee.
+Your upper year frend approaches you. He wishes you good luck on your exam.
 --------------
 characters end
