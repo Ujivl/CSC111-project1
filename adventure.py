@@ -95,7 +95,7 @@ if __name__ == "__main__":
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
             for item_id in location.item_ids:
-                if item_id == -1 or picked_up_item:
+                if (item_id == -1) or picked_up_item or (not w.item_list[item_id].can_pick_up):
                     continue
                 elif choice[8:] == w.item_list[item_id].name:
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
