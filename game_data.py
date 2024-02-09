@@ -39,7 +39,6 @@ class Item:
     start_position: int
     target_position: int
     target_points: int
-    can_pick_up: bool = False
 
     def __init__(self, name: str, item_id: int, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
