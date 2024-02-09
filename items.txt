@@ -33,10 +33,4 @@ moves_eating the cheese fills you with dread, but the people around you have bee
 7
 6
 1000
--------
-library key_6
--
-4
-0
-10
 items end

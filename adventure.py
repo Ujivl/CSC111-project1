@@ -34,13 +34,14 @@ def format_and_print(inside_text: str) -> None:
 
 
 if __name__ == "__main__":
-    w = World(open("map.txt"), open("locations.txt"), open("items.txt"), open("characters.txt"))
+    w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
+
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                      f"\n{location.print_info(items_in_world)}")
@@ -94,7 +95,6 @@ if __name__ == "__main__":
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
             for item_id in location.item_ids:
-                w.item_list[item_id].can_pick_up = w.character_list[location.location_number].check_quest()
                 if (item_id == -1) or picked_up_item or (not w.item_list[item_id].can_pick_up):
                     continue
                 elif choice[8:] == w.item_list[item_id].name:
