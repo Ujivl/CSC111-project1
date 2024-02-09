@@ -1,30 +1,22 @@
-0-LIBRARY RECEPTION
+0-LIBRARY
 2
-You are standing at the front door of the library.
+You are inside the library, there seems to be a lost and found box on the reception table.
 You are now inside the library. Around you are happiness deprived students, all wishing exam season was over so they
 could finally relax. You examine the desk you were working at last night and see the mountain of eraser debris on the
-floor. Your eraser, now the mere size of a pea, helped you to make the perfect cheat sheet. The librarian is right next
-to you, but you did not see her in the room prior to this, almost as if she appeared from thin air. She scolds you for
-making a mess in her library and asks you to clean up after yourself. You apologise profusely and start cleaning the
-eraser debris.
+floor. You also spot a lost and found box, but it seems to be locked... Maybe you can find a key?
 descriptions end
 ----------
 1-QUAD
 -1
 You are standing in the middle of the quad. To the west lies the library, to the East, there is the UofT gym.
 You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
-you are multiple buildings where you spent last night studying for your exam. You look around and notice the campus is
-now filled with magic, and strange creatures have appeared out of nowhere! Your upper year friend approaches you and
-states that the concentrated lack of sleep in the area has caused weird things to happen, and there are monsters
-surrounding the area. Your journey to get to the exam hall has gotten exponentially harder, as now you must get your
-items without getting eaten to make it to the exam on time. The quad connects to most of the important buildings you
-go to on a daily basis and can be used to access the map. Your friend state’s before you can access the map that you
-must solve this riddle so they can see that you are capable of going to the exam:
+you are multiple buildings where you spent last night studying for your exam. your friend is sitting on a bench,
+Looking through thEir belongings and Making sure they didn't fOrget their t-card, cheat sheet, and lucky peNcil.
 descriptions end
 ----------
 2-GYM
 0
-brief description
+You are inside the gym. The
 You are now inside the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
 mental and physical hardships. The gym, equipped with the latest technology gives students an opportunity to improve
 their mental and physical health. There are little to no students to be seen. The air smells particularly pungent
@@ -42,7 +34,7 @@ cooked meal, which you have not had in a while.
 descriptions end
 ----------
 4-BAHEN
-1
+1 6
 You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
 You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
 upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
@@ -60,7 +52,7 @@ Queen's Park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
-4
+4 5
 You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall.
 The sounds of birds envelopes your ears. The park buzzes with activity as student shuffle around. During your insane
 studying journey last night, you remember you went to Queen's Park for a change in environment. As you try to remember
@@ -69,7 +61,7 @@ the north, and to the west, you'll find the exam hall.
 descriptions end
 ----------
 7-alley way
-5
+7
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 descriptions end

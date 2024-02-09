@@ -39,6 +39,7 @@ class Item:
     start_position: int
     target_position: int
     target_points: int
+    can_pick_up: bool = False
 
     def __init__(self, name: str, item_id: int, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
@@ -61,7 +62,7 @@ class Item:
 
     def return_points(self, location_id: int) -> int:
         """
-        Returns the points in the if the item reached its target location, then makes the points 0.
+        Returns the points in if the item reached its target location, then makes the points 0.
         """
         if self.target_position == location_id:
             self.target_points, points = 0, self.target_points

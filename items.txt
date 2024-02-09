@@ -1,4 +1,4 @@
-pen_0
+lucky pen_0
 -
 2
 5
@@ -18,8 +18,8 @@ t-card_2
 -------
 coffee_3
 moves_you feel energized for some reason, gaining some speed_10
-6
-2
+3
+4
 20
 -------
 weird potion_4
@@ -30,7 +30,19 @@ location_you feel woozy and pass out, and when you wake up you see that you are 
 -------
 suspicious cheese_5
 moves_eating the cheese fills you with dread, but the people around you have been almost frozen in time._1000
-7
 6
+7
 1000
+-------
+library key_6
+-
+4
+0
+10
+-------
+regular pen_7
+-
+7
+2
+10
 items end
