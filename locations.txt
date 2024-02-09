@@ -42,7 +42,7 @@ cooked meal, which you have not had in a while.
 descriptions end
 ----------
 4-BAHEN
-1
+1 6
 You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
 You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
 upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
@@ -60,7 +60,7 @@ Queen's Park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
-4
+4 5
 You enter Queen's Park. The CS building is positioned in the north, and to the west, you'll find the exam hall.
 The sounds of birds envelopes your ears. The park buzzes with activity as student shuffle around. During your insane
 studying journey last night, you remember you went to Queen's Park for a change in environment. As you try to remember
@@ -69,7 +69,7 @@ the north, and to the west, you'll find the exam hall.
 descriptions end
 ----------
 7-alley way
-5
+7
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 descriptions end
