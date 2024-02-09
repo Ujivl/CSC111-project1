@@ -20,8 +20,33 @@ TO DO LIST:
 
 """
 
-from game_data import World, Player, Consumable
+from game_data import World, Player, Item, Consumable, Location
 # from pygame import mixer
+
+
+def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
+    """
+    should make the can pick up item true if the conditions are passed. THis is based on the item itself
+
+    """
+    if item.item_id == 0 and (7 in loc.item_ids):
+        item.can_pick_up = True
+        loc.remove_item_id(7)
+    elif item.item_id == 2 and (6 in loc.item_ids):
+        item.can_pick_up = True
+        loc.remove_item_id(6)
+    elif item.item_id == 3 and pla.score >= 10:
+        item.can_pick_up = True
+        pla.score -= 10
+    elif item.item_id == 4 and answer == "lemon":
+        item.can_pick_up = True
+    elif item.item_id == 6 and (3 in loc.item_ids):
+        item.can_pick_up = True
+        loc.remove_item_id(3)
+    elif item.item_id == 7 or item.item_id == 1 or item.item_id == 5:
+        item.can_pick_up = True
+
+    return item.can_pick_up
 
 
 def format_and_print(inside_text: str) -> None:
@@ -34,13 +59,14 @@ def format_and_print(inside_text: str) -> None:
 
 
 if __name__ == "__main__":
-    w = World(open("map.txt"), open("locations.txt"), open("items.txt"), open("characters.txt"))
+    w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
+
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                      f"\n{location.print_info(items_in_world)}")
@@ -94,12 +120,13 @@ if __name__ == "__main__":
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
             for item_id in location.item_ids:
-                w.item_list[item_id].can_pick_up = w.character_list[location.location_number].check_quest()
-                if (item_id == -1) or picked_up_item or (not w.item_list[item_id].can_pick_up):
+                if item_id == -1 or picked_up_item:
                     continue
-                elif choice[8:] == w.item_list[item_id].name:
+                elif (choice[8:] == w.item_list[item_id].name and
+                      item_pick_condition(w.item_list[item_id], location, p, choice)):
+                    if item_id == 3:
+                        w.item_list[item_id].can_pick_up = False
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
-                    w.item_list[item_id].picked_up = picked_up_item
                     format_and_print(f"you have picked up the following item: {choice[8:]}")
                     location.remove_item_id(item_id)
             if not picked_up_item:
@@ -130,4 +157,5 @@ if __name__ == "__main__":
             format_and_print("what are you yappin about bro")
 
     if p.victory:
+        print("\n\n\n\n")
         format_and_print("CONGRATULAIONS!!! you managed to write the exam in time and ace it!")

@@ -62,7 +62,7 @@ class Item:
 
     def return_points(self, location_id: int) -> int:
         """
-        Returns the points in the if the item reached its target location, then makes the points 0.
+        Returns the points in if the item reached its target location, then makes the points 0.
         """
         if self.target_position == location_id:
             self.target_points, points = 0, self.target_points
@@ -89,10 +89,10 @@ class Location:
     """
     name: str
     item_ids: list[int]
+    been_here: bool = False
     brief_intro: str
     long_intro: str
     location_number: int
-    been_here: bool = False
 
     def __init__(self, name: str, location_number: int, item_ids: list[str],
                  brief_intro: str, long_intro: str) -> None:
@@ -139,6 +139,18 @@ class Location:
             self.been_here = True
             return f"{self.long_intro} \n{items}"
 
+    def available_actions(self):
+        """
+        Return the available actions in this location.
+        The actions should depend on the items available in the location
+        and the x,y position of this location on the world map.
+        """
+
+        # NOTE: This is just a suggested method
+        # i.e. You may remove/modify/rename this as you like, and complete the
+        # function header (e.g. add in parameters, complete the type contract) as needed
+
+        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
     def add_item_id(self, item_id: int) -> None:
         """
         adds an item id from a location
@@ -205,33 +217,6 @@ class Player:
             return "".join([f"[{item.name}]\n" for item in self.inventory])
 
 
-class Character:
-    """
-    character class
-    """
-    starting_dialogue: str
-    ending_dialogue: str
-    required_conditions: list[any]
-    finished_quest: bool = False
-
-    def __init__(self, starting_dialogue: str, ending_dialogue: str, required_conditions: list[any]):
-        self.starting_dialogue = starting_dialogue
-        self.ending_dialogue = ending_dialogue
-        self.required_conditions = required_conditions
-
-    def check_quest(self, p: Player, location: Location, choice: str) -> any:
-        """
-        blah
-        """
-        self.finished_quest = ((self.required_conditions[0] == "score" and p.score >= self.required_conditions[1])
-                               or ((self.required_conditions[0] == "item" and
-                                    self.required_conditions[1] in location.item_ids)
-                               or (self.required_conditions[0] == "code" and
-                                   choice == self.required_conditions[1])))
-
-        return self.finished_quest
-
-
 class Consumable(Item):
     """
     Sub-Class for the consumable items
@@ -273,7 +258,7 @@ class World:
     map: list[list]
     locations_list: list[Location]
 
-    def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO, characters_data: TextIO) -> None:
+    def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
 
@@ -284,7 +269,6 @@ class World:
         self.map = self.load_map(map_data)
         self.locations_list = []
         self.item_list = []
-        self.character_list = []
         ending_line = ""
 
         while ending_line != "locations end":
@@ -324,16 +308,6 @@ class World:
                                   int(self.read_file_line(items_data)))
             self.item_list.append(item)
             ending_line = self.read_file_line(items_data)
-
-        while ending_line != "characters end":
-
-            ending_line = self.read_file_line(characters_data)
-            continue
-
-        map_data.close()
-        location_data.close()
-        items_data.close()
-        characters_data.close()
 
     def read_file_line(self, data: TextIO) -> str:
         """
