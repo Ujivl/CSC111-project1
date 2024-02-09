@@ -21,8 +21,13 @@ TO DO LIST:
 """
 
 from game_data import World, Player, Item, Consumable, Location
-# from pygame import mixer
+from pygame import mixer
 
+# Music enhancement (we can change up the music)
+mixer.init()
+mixer.music.load('stranger-things-124008.mp3')
+mixer.music.set_volume(0.2)
+mixer.music.play()
 
 def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
     """
@@ -81,6 +86,7 @@ if __name__ == "__main__":
 
         if location == winning_location and all(item.item_id in location.item_ids for item in winning_items):
             p.victory = True
+            mixer.music.stop()
             break
 
         choice = input("\nEnter action: ").lower()
@@ -89,6 +95,7 @@ if __name__ == "__main__":
 
         if p.max_moves == 0:
             format_and_print("GAME OVER: You have exceeded the maximum number of moves.")
+            mixer.music.stop()
             break
 
         if "go " in choice and choice[3:] in directions:
@@ -104,6 +111,7 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and choice == "quit":
             format_and_print("THANK YOU FOR PLAYING!!")
+            mixer.music.stop()
             break
 
         elif choice_in_possible_actions and choice == "look":
