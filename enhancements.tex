@@ -44,7 +44,7 @@
 \item Describe your enhancement \#5 Fetch quest implementation
 	\begin{itemize}
 	\item Complexity level: high
-    \item akjwfbawkjfnawkjnawkjfnawkjnaw
+    \item Fetch quests are specialised quests added to the game that involve the player acquiring an item and using it to gain access to another item. We used this for our text adventure game in order to acquire some of the items. This was especially difficult to implement, because we had to take into consideration, mostly because we had different ways in which the player can gain access to an item, whether it be through dropping an NPC required item, spending some of the player’s score, or evaluating a specific player input that unlocks the item somewhat like a passcode. We also had to take in consideration when the npc required an item but in exchange only gave out buffs or player attribute change. We went through several iterations of implementing the item check for when the required item was dropped in the quest location, freeing the reward item for the player to pick up. These attempts were initially faulty and complicated code, but we were able to finally figure out an implementation method through the use of dictionaries mapping required item ids to reward item ids. This in addition to updating the item attribute which allowed the player to pick it up and updating the npc quest dialogue on the location descriptions proved to be quite complex for our level of experience.
 	\end{itemize}
 
 \end{enumerate}
