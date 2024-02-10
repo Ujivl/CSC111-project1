@@ -23,15 +23,6 @@ TO DO LIST:
 from game_data import World, Player, Item, Consumable, Location
 from pygame import mixer
 
-<<<<<<< Updated upstream
-# Music enhancement (we can change up the music)
-mixer.init()
-mixer.music.load('stranger-things-124008.mp3')
-mixer.music.set_volume(0.2)
-mixer.music.play(-1)
-
-=======
->>>>>>> Stashed changes
 
 def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
     """
@@ -103,7 +94,7 @@ if __name__ == "__main__":
     mixer.init()
     mixer.music.load('stranger-things-124008.mp3')
     mixer.music.set_volume(0.2)
-    mixer.music.play()
+    mixer.music.play(-1)
 
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
