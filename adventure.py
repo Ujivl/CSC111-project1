@@ -1,43 +1,27 @@
-"""
-
-TO DO LIST:
-
-- dropping items and picking up items (BASE GAME) (DONE)
-    - when giving descriptions there should also be a line that says what items are in that location (DONE)
-- score addition, when visiting a new place score should be increased by some value (BASE GAME) (DONE)
-    - this should also include the fetch quest rewards (we might have to change gold to score just to simplify)
-- limited amount of moves, this should go down by one when the player changes location (BASE GAME) (DONE)
-    - maybe add a time command that translates amount of moves to time to tell the player how long they have
-- lose when amount of moves reach zero, break out of while loop (BASE GAME) (DONE)
-
-- Music (enchancements)
-- characters (enhancements)
-    - each character should have a quest they can give u (maybe we can add a character that gives u an item that's fake)
-    - add talk command to each character in the location that will activate the quest line
-    - add a quests command that tracks all quests (optional)
-- consumables (enchancements)
-
-
-"""
 from pygame import mixer
 from game_data import World, Player, Consumable
 
 
 def format_and_print(inside_text: str) -> None:
     """
-    puts everything between separators
+    This function puts everything in between two seperator lines. This improves game readability.
     """
-    print("------------------------------------------------")
-    print(inside_text)
-    print("------------------------------------------------")
+    print(f"------------------------------------------------\n{inside_text}"
+          f"\n------------------------------------------------")
 
 
 if __name__ == "__main__":
+    # initializes world object
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
+    # directions dictionary: contains a vector increment by 1 for all directions
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
+    #  list of possible actions
     possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
+    # gets the winning location object. (Exam hall)
     winning_location = w.get_location(1, 4)
+    #  gets a set of the items required to win (lucky pen, cheat sheet, t-card)
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
+    #  a dictionary of item ids where the keys are items that
     dependent_items = {7: 0, 6: 2, 3: 6, 5: 5}
     items_in_world = [item.name for item in w.item_list]
     choice = ""
