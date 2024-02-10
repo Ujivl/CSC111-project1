@@ -96,7 +96,7 @@ if __name__ == "__main__":
             break
 
         # checks to see if the barista runs out of coffee
-        if location.location_number == 3 and not (w.item_list[3] in location.item_ids):
+        if location.location_number == 3 and not (w.item_list[3].item_id in location.item_ids):
             location.finished_quest = True
 
         # gets the user action.
@@ -144,52 +144,75 @@ if __name__ == "__main__":
 
             # iterates through all items in location
             for item_id in location.item_ids:
-                # if the item the player wanted to pick up is a coffee, and has enough funds, then subtracts the score
-                if item_id == 3 and p.score >= 10:
-                    w.item_list[item_id].can_pick_up = True
-                    p.score -= 10
-                elif item_id == 3:
-                    w.item_list[item_id].can_pick_up = False
 
                 if item_id == -1 or picked_up_item:
                     continue
 
+                # if the item the player wanted to pick up is a coffee, and has enough funds, then subtracts the score
+                if item_id == 3 and p.score >= 10 and location.location_number == 3:
+                    w.item_list[item_id].can_pick_up = True
+                    p.score -= 10
+                elif item_id == 3 and location.location_number == 3:
+                    w.item_list[item_id].can_pick_up = False
+                # this elif statement checks if the player wants to pick up a coffee in another location
+                elif item_id == 3:
+                    w.item_list[item_id].can_pick_up = True
+
+                # this if-statement checks if the player has alerady pick up the item or if there is no item.
+                if item_id == -1 or picked_up_item:
+                    continue
+
+                # This elif passes when the loop finds the item the player wants to pick up and checks eligibility
                 elif choice[8:] == w.item_list[item_id].name and w.item_list[item_id].can_pick_up:
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
                     format_and_print(f"you have picked up the following item: {choice[8:]}")
                     location.remove_item_id(item_id)
 
+            # This if an item was not picked up
             if not picked_up_item:
                 format_and_print("This item is not available to pick up here: you might not be eligible to pick it up")
 
+        # the elif branch for when the player wants to drop an item
         elif choice_in_possible_actions and "drop" in choice and choice[5:] in items_in_world:
             item_id = items_in_world.index(choice[5:])
             dropped_item = p.edit_inventory(w.item_list[item_id], "r")
 
+            # passes when the item is succesfully removed from inventory
             if dropped_item:
+                # adds the item to the location
                 location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
 
+                # this statement checks to see if the dropped item is a npc required item, which unlocks the reward item
                 if location.location_number == w.item_list[item_id].target_position and item_id in dependent_items:
                     location.finished_quest = True
                     w.item_list[dependent_items[item_id]].can_pick_up = True
                     location.remove_item_id(item_id)
+                # This is if the item is a quest item that does not have a reward item
                 elif location.location_number == w.item_list[item_id].target_position:
                     location.finished_quest = True
+                # increases the score of the player based on item score reward
                 p.score += w.item_list[item_id].return_points(location.location_number)
 
+            # this passes if the item the player is trying to drop is not in their inventory
             else:
                 format_and_print("you do not have that item in your inventory")
 
+        # elif statement branch for when the player wants to use an item
         elif choice_in_possible_actions and "use" in choice and choice[4:] in items_in_world:
             item_id = items_in_world.index(choice[4:])
+
+            # checks to see if the item the player is trying to use is a consumable
             if isinstance(w.item_list[item_id], Consumable) and w.item_list[item_id] in p.inventory:
                 format_and_print(w.item_list[item_id].apply_properties(p))
                 p.edit_inventory(w.item_list[item_id], "r")
             else:
                 format_and_print("This item is not usable")
 
+        # custom elif branch for the weird potion event. runs when location is QP and the quest there isn't finished
         elif location.location_number == 6 and not location.finished_quest:
+
+            # runs if the player answers correctly
             if choice == "lemon":
                 format_and_print("The strange man says: mmmmmm delicious and sour! you really do know my favourite\n"
                                  " fruit i'll leave this concoction here for you, drinking it will take you where you\n"
@@ -199,13 +222,18 @@ if __name__ == "__main__":
             else:
                 format_and_print("the strange man says: 'WRONG ANSWER!!!! HEHE HAHA'")
 
+        # this statement passes when the player mispells items or their action
         elif choice_in_possible_actions:
-            format_and_print("invalid action: you may have mispelled your action")
+            format_and_print("invalid action: you may have mispelled your action or item")
 
+        # runs when the program does not recognize anything in the command.
         else:
             format_and_print("what are you yappin about bro")
 
+    # stops playing the music
     mixer.music.stop()
+
+    # runs if the player was victorious
     if p.victory:
         print("\n\n\n\n")
         format_and_print("CONGRATULAIONS!!! you managed to write the exam in time and ace it!")
