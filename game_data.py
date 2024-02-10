@@ -328,7 +328,7 @@ class World:
     """
     map: list[list]
     locations_list: list[Location]
-    item_list: list[Item]
+    item_list: list
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
