@@ -79,7 +79,7 @@ descriptions end
 7
 rat
 rat
-You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
-You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
+A giant rat sits on a throne made of garbage in front of you. He looks hungry...
+The RAT KING is appeased by your action, even though you're just a mortal.
 descriptions end
 locations end

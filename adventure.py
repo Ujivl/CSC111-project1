@@ -73,6 +73,13 @@ if __name__ == "__main__":
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
 
+    format_and_print("HELLO! WELCOME TO OUR GAME, in order to be victorious, you must attain the 3 items needed for"
+                     "you to pass your exam, travel through campus to find your items before you run out of moves!"
+                     "You can go to any location using the (go [direction]) command. If you want to know your score,"
+                     "use the (score) command. You are able to access your inventory at any point in the game using"
+                     "the (inventory) command. If you want to pick up items, use the (pick up [item name]) command."
+                     "But remember, There items you are ")
+
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                      f"\n{location.print_info(items_in_world)}")
