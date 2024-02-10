@@ -57,10 +57,11 @@ descriptions end
 -1
 You see proffessor Sadia pointing towards the 3 things you need for your exam: t-card, cheat sheet, and writing utensil.
 You see proffessor Sadia pointing towards the 3 things you need for your exam: t-card, cheat sheet, and writing utensil.
-You have reached the Exam Hall. Queen's Park is to the east of you.
-You have reached the Exam Hall (i can rewrite this because its kinda garbage rn). If you have all your items you
-may write the exam and easily get 100, however if you do not you may face the chance of failing this course.
-Queen's Park is to the east of you.
+You enter the exam hall, the air thick with tension. Queen’s Park is to the East of you.
+You enter the exam hall, the air thick with tension and anticipation. Your anxiousness is increased by the noise of
+shuffling papers and whispered talks filling the room. You feel beads of sweat drip down your head, and you start
+thinking if you can pass the exam even with your lucky items. The blood sweat and tears you sacrificed is all for this
+one moment. Queen’s park is to the east of you.
 descriptions end
 ----------
 6-Queen's Park
