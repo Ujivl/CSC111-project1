@@ -23,12 +23,15 @@ TO DO LIST:
 from game_data import World, Player, Item, Consumable, Location
 from pygame import mixer
 
+<<<<<<< Updated upstream
 # Music enhancement (we can change up the music)
 mixer.init()
 mixer.music.load('stranger-things-124008.mp3')
 mixer.music.set_volume(0.2)
 mixer.music.play(-1)
 
+=======
+>>>>>>> Stashed changes
 
 def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
     """
@@ -38,17 +41,21 @@ def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> 
     if item.item_id == 0 and (7 in loc.item_ids):
         item.can_pick_up = True
         loc.remove_item_id(7)
+        loc.finished_quest = True
     elif item.item_id == 2 and (6 in loc.item_ids):
         item.can_pick_up = True
         loc.remove_item_id(6)
+        loc.finished_quest = True
     elif item.item_id == 3 and pla.score >= 10:
         item.can_pick_up = True
         pla.score -= 10
     elif item.item_id == 4 and answer == "lemon":
         item.can_pick_up = True
+        loc.finished_quest = True
     elif item.item_id == 6 and (3 in loc.item_ids):
         item.can_pick_up = True
         loc.remove_item_id(3)
+        loc.finished_quest = True
     elif item.item_id == 7 or item.item_id == 1 or item.item_id == 5:
         item.can_pick_up = True
 
@@ -72,13 +79,31 @@ if __name__ == "__main__":
     winning_location = w.get_location(1, 4)  # TODO: file dependent
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
     items_in_world = [item.name for item in w.item_list]
+    choice = ""
+    print("\n\n\n\n\n\n\n\n\n\n\n\n")
+    format_and_print("HELLO! WELCOME TO OUR GAME, in order to be victorious, you must attain the 3 items needed for\n"
+                     "you to pass your exam, travel through campus to find your items before you run out of moves!\n"
+                     "You can go to any location using the (go [direction]) command. If you want to know your score,\n"
+                     "use the (score) command. You are able to access your inventory at any point in the game using\n"
+                     "the (inventory) command. If you want to pick up items, use the (pick up [item name]) command.\n"
+                     "But remember, There items you might not be eligible to pick up! There is also the \n"
+                     "(drop [item name]) command, which you can use to fulfill npc quests. Some items are usable, so\n"
+                     "make sure to take advantage of that by using the (use [item name]) command. Lastly, if you've \n"
+                     "had enough of our game, you can use the (quit) command to exit the game. If you are ready to \n"
+                     "continue, type continue!")
 
-    format_and_print("HELLO! WELCOME TO OUR GAME, in order to be victorious, you must attain the 3 items needed for"
-                     "you to pass your exam, travel through campus to find your items before you run out of moves!"
-                     "You can go to any location using the (go [direction]) command. If you want to know your score,"
-                     "use the (score) command. You are able to access your inventory at any point in the game using"
-                     "the (inventory) command. If you want to pick up items, use the (pick up [item name]) command."
-                     "But remember, There items you are ")
+    while choice != "continue":
+        choice = input("Enter action: ")
+        if choice != "continue":
+            format_and_print("thats not what we asked you to type!")
+
+    print("\n\n\n\n\n\n\n\n\n\n\n\n")
+    format_and_print("LETS BEGIN!")
+
+    mixer.init()
+    mixer.music.load('stranger-things-124008.mp3')
+    mixer.music.set_volume(0.2)
+    mixer.music.play()
 
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
@@ -154,6 +179,8 @@ if __name__ == "__main__":
             if dropped_item:
                 location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
+                if item_id == 5 and location.location_number == 7:
+                    location.finished_quest = True
                 p.score += w.item_list[item_id].return_points(location.location_number)
             else:
                 format_and_print("you do not have that item in your inventory")
