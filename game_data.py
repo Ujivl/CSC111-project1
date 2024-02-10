@@ -223,7 +223,7 @@ class Player:
         adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
 
         >>> player = Player(0, 0)
-        >>> item = Item('book', 2, 1, 4, 50)
+        >>> itemss = Item('book', 2, 1, 4, 50)
         >>> player.edit_inventory(item, 'a')
         True
         >>> player.edit_inventory(item, 'r')
