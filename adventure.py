@@ -32,21 +32,15 @@ def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> 
     if item.item_id == 0 and (7 in loc.item_ids):
         item.can_pick_up = True
         loc.remove_item_id(7)
-        loc.finished_quest = True
     elif item.item_id == 2 and (6 in loc.item_ids):
         item.can_pick_up = True
-        loc.remove_item_id(6)
-        loc.finished_quest = True
     elif item.item_id == 3 and pla.score >= 10:
         item.can_pick_up = True
         pla.score -= 10
     elif item.item_id == 4 and answer == "lemon":
         item.can_pick_up = True
-        loc.finished_quest = True
     elif item.item_id == 6 and (3 in loc.item_ids):
         item.can_pick_up = True
-        loc.remove_item_id(3)
-        loc.finished_quest = True
     elif item.item_id == 7 or item.item_id == 1 or item.item_id == 5:
         item.can_pick_up = True
 
@@ -170,8 +164,9 @@ if __name__ == "__main__":
             if dropped_item:
                 location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
-                if item_id == 5 and location.location_number == 7:
+                if location.location_number == w.item_list[item_id].target_position:
                     location.finished_quest = True
+                    location.remove_item_id(item_id)
                 p.score += w.item_list[item_id].return_points(location.location_number)
             else:
                 format_and_print("you do not have that item in your inventory")
