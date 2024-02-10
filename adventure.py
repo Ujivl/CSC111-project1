@@ -103,9 +103,10 @@ if __name__ == "__main__":
         choice = input("\nEnter action: ").lower()
         print("\n")
 
-        # This returns
+        # This returns true if the player decides to do a non-moving action
         choice_in_possible_actions = any([actions in choice for actions in possible_actions])
 
+        # Takes care of moving the player, including letting the player know if the way is blocked
         if "go " in choice and choice[3:] in directions:
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
                 format_and_print("That way is blocked")
@@ -114,28 +115,36 @@ if __name__ == "__main__":
                 p.x += directions[choice[3:]][0]
                 p.y += directions[choice[3:]][1]
 
+        # This checks to see if the player tried to move, but got the direction incorrect
         elif "go " in choice:
             format_and_print("invalid direction")
 
+        # Checks if the player wanted to quit, then breaks the loop
         elif choice_in_possible_actions and choice == "quit":
             format_and_print("THANK YOU FOR PLAYING!!")
             break
 
+        # Checks if the player wanted to look, then prints the long description of the location
         elif choice_in_possible_actions and choice == "look":
             location.been_here = False
             format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                              f"\n{location.print_info(items_in_world)}")
 
+        # Checks to see if the player wanted to see their inventory, then shows inventory
         elif choice_in_possible_actions and choice == "inventory":
             format_and_print(p.show_inventory())
 
+        # Checks to see if the player wanted to see their score, then prints score
         elif choice_in_possible_actions and choice == "score":
             format_and_print(f"SCORE: {p.score}")
 
+        # checks to see if the player wanted to pick up an item.
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
 
+            # iterates through all items in location
             for item_id in location.item_ids:
+                # if the item the player wanted to pick up is a coffee, and has enough funds, then subtracts the score
                 if item_id == 3 and p.score >= 10:
                     w.item_list[item_id].can_pick_up = True
                     p.score -= 10
