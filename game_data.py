@@ -60,7 +60,7 @@ class Item:
         self.start_position = start
         self.target_position = target
         self.target_points = target_points
-        if item_id == 1 or item_id == 5 or item_id == 7:
+        if item_id in {1, 5, 7}:
             self.can_pick_up = True
 
     def return_points(self, location_id: int) -> int:
@@ -69,11 +69,11 @@ class Item:
 
         >>> item = Item('book', 2, 1, 4, 50 )
         >>> samp_location_id = 4
-        >>> Item.return_points(item, location_id)
+        >>> Item.return_points(item, samp_location_id)
         50
         >>> item = Item('cheat sheet', 2, 1, 4, 50 )
         >>> test_location_id = 3
-        >>> Item.return_points(item, location_id)
+        >>> Item.return_points(item, test_location_id)
         0
         """
         if self.target_position == location_id:
@@ -138,7 +138,7 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-    def print_info(self, items) -> str:
+    def print_info(self, items: list[str]) -> str:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
@@ -207,7 +207,7 @@ class Player:
     """
     x: int
     y: int
-    victory = False
+    victory: bool
     inventory: list[Item] = []
     score: int = 0
     difficulty: str = "easy"
@@ -237,15 +237,15 @@ class Player:
         """
         adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
 
-        >>> player = Player(0, 0)
+        >>> player = Player(0, 0, 'easy')
         >>> itemss = Item('book', 2, 1, 4, 50)
-        >>> player.edit_inventory(item, 'a')
+        >>> player.edit_inventory(itemss, 'a')
         True
-        >>> player.edit_inventory(item, 'r')
+        >>> player.edit_inventory(itemss, 'r')
         True
         >>> player.inventory
         []
-        >>> player.edit_inventory(item, 'r')
+        >>> player.edit_inventory(itemss, 'r')
         False
         """
         if add_remove == "a":
@@ -261,7 +261,7 @@ class Player:
         """
         prints out all the items in the inventory in a neat format.
 
-        >>> player = Player(0, 0)
+        >>> player = Player(0, 0, 'easy')
         >>> item1 = Item('book', 2, 1, 4, 50)
         >>> item2 = Item('choco', 2, 1, 4, 50)
         >>> item3 = Item('cheat', 2, 1, 4, 50)
@@ -273,7 +273,7 @@ class Player:
         [book]
         [choco]
         <BLANKLINE>
-        >>> player = Player(0, 0)
+        >>> player = Player(0, 0, 'easy')
         >>> player.show_inventory()
         'you currently have no items in your inventory'
         """
@@ -328,6 +328,7 @@ class World:
     """
     map: list[list]
     locations_list: list[Location]
+    item_list: list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -418,3 +419,17 @@ class World:
             if location_number == i.location_number:
                 return i
         return None
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod(verbose=True)
+
+    # When you are ready to check your work with python_ta, uncomment the following lines.
+    # (In PyCharm, select the lines below and press Ctrl/Cmd + / to toggle comments.)
+    # You can use "Run file in Python Console" to run both pytest and PythonTA,
+    # and then also test your methods manually in the console.
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120
+    })
