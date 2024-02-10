@@ -6,7 +6,7 @@
 \usepackage[margin=0.75in]{geometry}
 
 \title{CSC111 Winter 2024 Project 1}
-\author{TODO: FILL IN YOUR NAME(S) HERE}
+\author{Sudharshan Palaniyappan and Ujjvel Lijo}
 \date{\today}
 
 \begin{document}
@@ -36,9 +36,9 @@
 	\end{itemize}
 
 \item Describe your enhancement \#4 NPC actions text
-	\begin{itemize}
-	\item Complexity level: medium
-	\item NPC action text gives an output to the player along with the description when they are in a location, depending on if the fetch quest is completed or not. We added this to the game to give the user a deeper level of immersion and wanted to make the character dialogue dependent on certain conditions. This enhancement was a difficult complexity enhancement since the output of the text is completely dependent on the player's actions. We implemented this by adding 2 instance attributes, starting dialogue and ending dialogue to the locations class. In addition, We had a lot of challenges implementing this as we initially tried to create a character class and parse through starting and ending dialogue, but that introduced multiple issues with our fetch quests as they were dependent on the locations.txt. Eventually, we decided to include the starting and ending dialogue in the locations class which simplified a lot of the code, both in the adventure.py and the game_data.py.
+        \begin{itemize}
+        \item Complexity level: medium
+    \item NPC action text gives an output to the player along with the description when they are in a location, depending on if the fetch quest is completed or not. We added this to the game to give the user a deeper level of immersion and wanted to make the character dialogue dependent on certain conditions. This enhancement was a medium complexity enhancement since the output of the text is completely dependent on the player's actions. We implemented this by adding 2 instance attributes, starting dialogue and ending dialogue to the locations class. In addition, We had a lot of challenges implementing this as we initially tried to create a character class and parse through starting and ending dialogue, but that introduced multiple issues with our fetch quests as they were dependent on the locations.txt. Eventually, we decided to include the starting and ending dialogue in the locations class which simplified a lot of the code, both in the adventure.py and the game\_data.py.
 	\end{itemize}
 
 \item Describe your enhancement \#5 Fetch quest implementation
