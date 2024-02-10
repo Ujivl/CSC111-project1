@@ -20,26 +20,8 @@ TO DO LIST:
 
 """
 
-from game_data import World, Player, Item, Consumable, Location
+from game_data import World, Player, Consumable
 from pygame import mixer
-
-
-def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> bool:
-    """
-    should make the can pick up item true if the conditions are passed. THis is based on the item itself
-
-    """
-    item.can_pick_up = (item.item_id == 0 and (7 in loc.item_ids)) or \
-                       (item.item_id == 2 and (6 in loc.item_ids)) or \
-                       (item.item_id == 3 and pla.score >= 10) or \
-                       (item.item_id == 4 and answer == "lemon") or \
-                       (item.item_id == 6 and (3 in loc.item_ids)) or \
-                       (item.item_id == 7 or item.item_id == 1 or item.item_id == 5)
-
-    if item.item_id == 3 and pla.score >= 10:
-        pla.score -= 10
-
-    return item.can_pick_up
 
 
 def format_and_print(inside_text: str) -> None:
@@ -54,6 +36,7 @@ def format_and_print(inside_text: str) -> None:
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(2, 1)  # TODO: file dependent
+    dictionary = {7: 0, 6: 2, 3: 6, 5: 5}
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
     winning_location = w.get_location(1, 4)  # TODO: file dependent
@@ -93,6 +76,7 @@ if __name__ == "__main__":
         location, past_location = w.get_location(p.x, p.y), location
         if not location.been_here:
             p.score += 5
+
         if location != past_location:
             format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                              f"\n{location.print_info(items_in_world)}")
@@ -101,6 +85,9 @@ if __name__ == "__main__":
             p.victory = True
             mixer.music.stop()
             break
+
+        if location.location_number == 3 and not location.item_ids:
+            location.finished_quest = True
 
         choice = input("\nEnter action: ").lower()
         print("\n")
@@ -140,29 +127,41 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and "pick up" in choice and choice[8:] in items_in_world:
             picked_up_item = False
+
             for item_id in location.item_ids:
+                if item_id == 3 and p.score >= 10:
+                    w.item_list[item_id].can_pick_up = True
+                    p.score -= 10
+                elif item_id == 3:
+                    w.item_list[item_id].can_pick_up = False
+
                 if item_id == -1 or picked_up_item:
                     continue
-                elif (choice[8:] == w.item_list[item_id].name and
-                      item_pick_condition(w.item_list[item_id], location, p, choice)):
-                    if item_id == 3:
-                        w.item_list[item_id].can_pick_up = False
+
+                elif choice[8:] == w.item_list[item_id].name and w.item_list[item_id].can_pick_up:
                     picked_up_item = p.edit_inventory(w.item_list[item_id], "a")
                     format_and_print(f"you have picked up the following item: {choice[8:]}")
                     location.remove_item_id(item_id)
+
             if not picked_up_item:
-                format_and_print("This item is not available to pick up here")
+                format_and_print("This item is not available to pick up here: you might not be eligible to pick it up")
 
         elif choice_in_possible_actions and "drop" in choice and choice[5:] in items_in_world:
             item_id = items_in_world.index(choice[5:])
             dropped_item = p.edit_inventory(w.item_list[item_id], "r")
+
             if dropped_item:
                 location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
-                if location.location_number == w.item_list[item_id].target_position:
+
+                if location.location_number == w.item_list[item_id].target_position and item_id in dictionary:
                     location.finished_quest = True
+                    w.item_list[dictionary[item_id]].can_pick_up = True
                     location.remove_item_id(item_id)
+                elif location.location_number == w.item_list[item_id].target_position:
+                    location.finished_quest = True
                 p.score += w.item_list[item_id].return_points(location.location_number)
+
             else:
                 format_and_print("you do not have that item in your inventory")
 
@@ -173,6 +172,12 @@ if __name__ == "__main__":
                 p.edit_inventory(w.item_list[item_id], "r")
             else:
                 format_and_print("This item is not usable")
+
+        elif location.location_number == 6 and not location.finished_quest:
+            answer = input("what is the stranger's favorite fruit?: ")
+            if answer == "lemon":
+                w.item_list[4].can_pick_up = True
+                location.finished_quest = True
 
         elif choice_in_possible_actions:
             format_and_print("invalid action: you may have mispelled your action")
