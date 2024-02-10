@@ -53,10 +53,10 @@ if __name__ == "__main__":
                      "(drop [item name]) command, which you can use to fulfill npc quests. Some items are usable, so\n"
                      "make sure to take advantage of that by using the (use [item name]) command. Lastly, if you've \n"
                      "had enough of our game, you can use the (quit) command to exit the game. If you are ready to \n"
-                     "continue, type continue!")
+                     "continue, type play in the prompt given!")
 
-    while choice != "continue":
-        choice = input("Enter action: ")
+    while choice != "play":
+        choice = input("Enter action: ").lower()
         if choice != "continue":
             format_and_print("thats not what we asked you to type!")
 
@@ -174,10 +174,14 @@ if __name__ == "__main__":
                 format_and_print("This item is not usable")
 
         elif location.location_number == 6 and not location.finished_quest:
-            answer = input("what is the stranger's favorite fruit?: ")
-            if answer == "lemon":
+            if choice == "lemon":
+                format_and_print("The strange man says: mmmmmm delicious and sour! you really do know my favourite"
+                                 " fruit i'll leave this concotion here for you, drinking it will take you where you "
+                                 "need to be!!!!!")
                 w.item_list[4].can_pick_up = True
                 location.finished_quest = True
+            else:
+                format_and_print("the strange man says: 'WRONG ANSWER!!!! HEHE HAHA'")
 
         elif choice_in_possible_actions:
             format_and_print("invalid action: you may have mispelled your action")
