@@ -233,7 +233,6 @@ class Player:
         else:
             self.max_moves = 10
 
-
     def edit_inventory(self, item: Item, add_remove: str) -> bool:
         """
         adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
