@@ -86,7 +86,7 @@ class Location:
     Instance Attributes:
         - name: name of the location
         - characters: characters within the location
-         - gold: amount of gold present in the location
+        - gold: amount of gold present in the location
         - been_here: a boolean indicating whether the player has visited the location
         - brief_intro: a short introduction to the location
         - long_intro: a more detailed description of the location
@@ -101,9 +101,9 @@ class Location:
     location_number: int
     brief_intro: str
     long_intro: str
-    been_here: bool = False
     starting_dialogue: str
     ending_dialogue: str
+    been_here: bool = False
     finished_quest: bool = False
 
     def __init__(self, name: str, location_number: int, item_ids: list[str], starting_dialogue: str,
@@ -161,9 +161,9 @@ class Location:
         """
         adds an item id from a location
 
-        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro", "", "")
         >>> location.add_item_id(3)
-        >>> location.item_ids == [5,6] + [3]
+        >>> location.item_ids == [5, 6] + [3]
         True
         """
         self.item_ids.append(item_id)
@@ -172,12 +172,12 @@ class Location:
         """
         removes an item id from a location
 
-        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro", "", "")
         >>> location.remove_item_id(3)
-        >>> location.item_ids ==  [5, 6]
+        >>> location.item_ids == [5, 6]
         True
 
-        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro")
+        >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro", "", "")
         >>> location.remove_item_id(5)
         >>> location.item_ids == [6]
         True
