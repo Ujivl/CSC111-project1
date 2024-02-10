@@ -1,3 +1,9 @@
+"""
+The adventure file runs the main event while loop for the player, this is where all the decisions are made by the player
+responses are made by the program.
+
+"""
+
 from pygame import mixer
 from game_data import World, Player, Consumable
 
@@ -21,10 +27,14 @@ if __name__ == "__main__":
     winning_location = w.get_location(1, 4)
     #  gets a set of the items required to win (lucky pen, cheat sheet, t-card)
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
-    #  a dictionary of item ids where the keys are items that
+    #  a dictionary of item ids where the keys are items that unlock the locked items, which are part of the values.
     dependent_items = {7: 0, 6: 2, 3: 6, 5: 5}
+    #  this is a list of items based on just the name, used to recognize item names from player input
     items_in_world = [item.name for item in w.item_list]
+    #  initialization of the choice variable, this variable will store the player input
     choice = ""
+
+    #  the introduction to the game
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
     format_and_print("HELLO! WELCOME TO OUR GAME, in order to be victorious, you must attain the 3 items needed for\n"
                      "you to pass your exam, travel through campus to find your items before you run out of moves!\n"
@@ -37,50 +47,61 @@ if __name__ == "__main__":
                      "had enough of our game, you can use the (quit) command to exit the game. If you are ready to \n"
                      "continue, pick your difficulty: [easy] [medium] [hard] [impossible]")
 
+    #  while loop that runs to get the player difficulty
     while choice not in ["easy", "medium", "hard", "impossible"]:
         choice = input("Enter action: ").lower()
         if choice not in ["easy", "medium", "hard", "impossible"]:
             format_and_print("thats not what we asked you to type!")
 
+    #  initializes the player object, with (2, 1) as the starting coordinates (Quad).
     p = Player(2, 1, choice)
 
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
     format_and_print("LETS BEGIN!")
 
+    #  initializes the music player in pygame, and loops until the game event loop is broken,
     mixer.init()
     mixer.music.load('stranger-things-124008.mp3')
     mixer.music.set_volume(0.2)
     mixer.music.play(-1)
 
+    #  gets the starting location of player in the form of a location object
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                      f"\n{location.print_info(items_in_world)}")
 
+    #  main event while loop.
     while not p.victory:
+
+        # gets the location again, for when the player changes locations, and sets past_location to previous location
         location, past_location = w.get_location(p.x, p.y), location
+
+        #  if the player hasn't been here, add 5 to score
         if not location.been_here:
             p.score += 5
 
+        #  if the player is in the same location, do not print the "YOU ARE AT...." text.
         if location != past_location:
             format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
                              f"\n{location.print_info(items_in_world)}")
 
+        #  victory checker, breaks out of the loop the moment player gets all 3 items to the exam hall.
         if location == winning_location and all(item.item_id in location.item_ids for item in winning_items):
             p.victory = True
-            mixer.music.stop()
             break
-
-        if location.location_number == 3 and not location.item_ids:
-            location.finished_quest = True
-
-        choice = input("\nEnter action: ").lower()
-        print("\n")
-        choice_in_possible_actions = any([actions in choice for actions in possible_actions])
 
         if p.max_moves == 0:
             format_and_print("GAME OVER: You have exceeded the maximum number of moves.")
-            mixer.music.stop()
             break
+
+        # checks to see if the barista runs out of coffee
+        if location.location_number == 3 and not (w.item_list[3] in location.item_ids):
+            location.finished_quest = True
+
+        # choice
+        choice = input("\nEnter action: ").lower()
+        print("\n")
+        choice_in_possible_actions = any([actions in choice for actions in possible_actions])
 
         if "go " in choice and choice[3:] in directions:
             if w.get_location(p.x + directions[choice[3:]][0], p.y + directions[choice[3:]][1]) is None:
@@ -95,7 +116,6 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and choice == "quit":
             format_and_print("THANK YOU FOR PLAYING!!")
-            mixer.music.stop()
             break
 
         elif choice_in_possible_actions and choice == "look":
@@ -173,6 +193,7 @@ if __name__ == "__main__":
         else:
             format_and_print("what are you yappin about bro")
 
+    mixer.music.stop()
     if p.victory:
         print("\n\n\n\n")
         format_and_print("CONGRATULAIONS!!! you managed to write the exam in time and ace it!")
