@@ -176,8 +176,8 @@ if __name__ == "__main__":
 
         elif location.location_number == 6 and not location.finished_quest:
             if choice == "lemon":
-                format_and_print("The strange man says: mmmmmm delicious and sour! you really do know my favourite"
-                                 " fruit i'll leave this concotion here for you, drinking it will take you where you "
+                format_and_print("The strange man says: mmmmmm delicious and sour! you really do know my favourite\n"
+                                 " fruit i'll leave this concoction here for you, drinking it will take you where you\n"
                                  "need to be!!!!!")
                 w.item_list[4].can_pick_up = True
                 location.finished_quest = True
