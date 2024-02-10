@@ -29,20 +29,15 @@ def item_pick_condition(item: Item, loc: Location, pla: Player, answer: str) -> 
     should make the can pick up item true if the conditions are passed. THis is based on the item itself
 
     """
-    if item.item_id == 0 and (7 in loc.item_ids):
-        item.can_pick_up = True
-        loc.remove_item_id(7)
-    elif item.item_id == 2 and (6 in loc.item_ids):
-        item.can_pick_up = True
-    elif item.item_id == 3 and pla.score >= 10:
-        item.can_pick_up = True
+    item.can_pick_up = (item.item_id == 0 and (7 in loc.item_ids)) or \
+                       (item.item_id == 2 and (6 in loc.item_ids)) or \
+                       (item.item_id == 3 and pla.score >= 10) or \
+                       (item.item_id == 4 and answer == "lemon") or \
+                       (item.item_id == 6 and (3 in loc.item_ids)) or \
+                       (item.item_id == 7 or item.item_id == 1 or item.item_id == 5)
+
+    if item.item_id == 3 and pla.score >= 10:
         pla.score -= 10
-    elif item.item_id == 4 and answer == "lemon":
-        item.can_pick_up = True
-    elif item.item_id == 6 and (3 in loc.item_ids):
-        item.can_pick_up = True
-    elif item.item_id == 7 or item.item_id == 1 or item.item_id == 5:
-        item.can_pick_up = True
 
     return item.can_pick_up
 
