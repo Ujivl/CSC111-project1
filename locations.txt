@@ -78,9 +78,10 @@ descriptions end
 ----------
 7-mysterious alley way
 7
-rat
-rat
-You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
-You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
+A giant rat sits on a throne made of garbage in front of you. He looks hungry...
+The RAT KING is appeased by your action, even though you're just a mortal.
+You enter a dimly lit alleyway, the sides filled with garbage and unfinished construction. West contains queen's park.
+You enter a dimly lit alleyway, the sides filled with garbage and unfinished construction. It wouldn't be toronto if it
+didn't have unfinished construction! At the end of the alley way, you see an ominous figure...
 descriptions end
 locations end
