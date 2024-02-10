@@ -219,6 +219,17 @@ class Player:
     def edit_inventory(self, item: Item, add_remove: str) -> bool:
         """
         adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
+
+        >>> player = Player(0, 0)
+        >>> item = Item('book', 2, 1, 4, 50)
+        >>> player.edit_inventory(item, 'a')
+        True
+        >>> player.edit_inventory(item, 'r')
+        True
+        >>> player.inventory
+        []
+        >>> player.edit_inventory(item, 'r')
+        False
         """
         if add_remove == "a":
             self.inventory.append(item)
