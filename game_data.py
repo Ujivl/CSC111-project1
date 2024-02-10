@@ -26,9 +26,9 @@ class Item:
 
     Instance Attributes:
         - name: name of the item
-        - start_position: starting location of the item on the map
-        - target_position: the location where the item is supposed to end up in on the map
-        - target_points: idk what this does uji lol
+        - start_position: starting location id of the item on the map
+        - target_position: the location id where the item is supposed to end up in on the map
+        - target_points: The amount of points you will get when u get the item to the target location
         - can_pick_up: a boolean indicating whether you can pick up an item or not
 
     Representation Invariants:
@@ -88,18 +88,17 @@ class Location:
 
     Instance Attributes:
         - name: name of the location
-        - characters: characters within the location
-        - gold: amount of gold present in the location
+        - item_ids: list of item ids in the location
         - brief_intro: a short introduction to the location
         - long_intro: a more detailed description of the location
         - location_number: a unique identifier for the location
         - been_here: a boolean indicating whether the player has visited the location
-        - finished_quest: a boolean indicating whether the player has completed the quest
+        - finished_quest: a boolean indicating whether the player has completed the quest in the location
     Representation Invariants:
-        - self.gold >= 0
         - location_number >= 0
         - self.name != ""
     """
+
     name: str
     item_ids: list[int]
     location_number: int
@@ -122,27 +121,12 @@ class Location:
         self.starting_dialogue = starting_dialogue
         self.ending_dialogue = ending_dialogue
 
-        # NOTES:
-        # Data that could be associated with each Location object:
-        # a position in the world map,
-        # a brief description,
-        # a long description,
-        # a list of available commands/directions to move,
-        # items that are available in the location,
-        # and whether the location has been visited before.
-        # Store these as you see fit, using appropriate data types.
-        #
-        # This is just a suggested starter class for Location.
-        # You may change/add parameters and the data available for each Location object as you see fit.
-        #
-        # The only thing you must NOT change is the name of this class: Location.
-        # All locations in your game MUST be represented as an instance of this class.
-
     def print_info(self, items: list[str]) -> str:
         """
         Prints the introduction of the location when the player enters the location, can either print the long
         introduction if the player hasn't been to the location yet, or can print the brief introduction if the player
-        has been to the location before.
+        has been to the location before. Also prints the npc text based on if the player has completed the quest and
+        also prints the items in the location.
 
         """
         if self.finished_quest:
@@ -163,7 +147,7 @@ class Location:
 
     def add_item_id(self, item_id: int) -> None:
         """
-        adds an item id from a location
+        adds an item id to the location
 
         >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro", "", "")
         >>> location.add_item_id(3)
@@ -201,6 +185,7 @@ class Player:
         - victory: a boolean indicating whether the player has achieved victory
         - score: the player's score in the game, accumulated by collecting items and visiting locations
         - max_moves: the maximum number of moves allowed for the player
+        - difficulty: a string value that determines the difficulty
 
     Representation Invariants:
         - self.max_moves > 0
@@ -235,7 +220,8 @@ class Player:
 
     def edit_inventory(self, item: Item, add_remove: str) -> bool:
         """
-        adds or removes an item to the inventory, if the item is not in inventory and add_remove is set as r
+        adds or removes an item to the inventory, based on whether we want to remove the item "r" or add an item "a"
+        returns false if the item was removed or added, else returns True.
 
         >>> player = Player(0, 0, 'easy')
         >>> itemss = Item('book', 2, 1, 4, 50)
@@ -321,6 +307,7 @@ class World:
     Instance Attributes:
         - map: a nested list representation of this world's map
         - locations_list: a list containing instances of Location inside the world
+        - item_list: a list of items that is in the world.
 
     Representation Invariants:
         - len(self.map) > 0 and all(len(row) == len(map[0]) for row in self.map)
@@ -333,9 +320,6 @@ class World:
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
-
-        - location_data: name of text file containing location data (format left up to you)
-        - items_data: name of text file containing item data (format left up to you)
         """
 
         self.map = self.load_map(map_data)
@@ -343,6 +327,21 @@ class World:
         self.item_list = []
         ending_line = ""
 
+        """
+        
+        parses through the locations.txt file and creates a location object for every location.
+        the format for the location.txt file goes:
+        
+        [location number]-[location name]
+        [list of items in location]
+        [Starting quest dialogue]
+        [Ending quest dialogue]
+        [short description for location]
+        [long description for location (can be multiple lines)]
+        [descriptions end]      <---- This is to signify long descriptions end
+        [----------]            <----- if this is locations end, the while loop breaks
+        
+        """
         while ending_line != "locations end":
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
@@ -364,6 +363,21 @@ class World:
             self.locations_list.append(location)
             ending_line = self.read_file_line(location_data)
 
+        """
+
+        parses through the items.txt file and creates a item/consumable object for every item.
+        the format for the location.txt file goes:
+
+        [location number]-[location name]
+        [list of items in location]
+        [Starting quest dialogue]
+        [Ending quest dialogue]
+        [short description for location]
+        [long description for location (can be multiple lines)]
+        [descriptions end]      <---- This is to signify long descriptions end
+        [----------]            <----- if this is locations end, the while loop breaks
+
+        """
         while ending_line != "items end":
             l1 = self.read_file_line(items_data).split("_")
             consumable = self.read_file_line(items_data)

@@ -96,7 +96,7 @@ if __name__ == "__main__":
             break
 
         # checks to see if the barista runs out of coffee
-        if location.location_number == 3 and not (w.item_list[3].item_id in location.item_ids):
+        if location.location_number == 3 and not w.item_list[3].item_id in location.item_ids:
             location.finished_quest = True
 
         # gets the user action.

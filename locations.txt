@@ -26,8 +26,8 @@ You are inside the gym. It reeks of sweat and hardwork. To the west lies the Qua
 You are now inside the UofT gym, greeted by the distinct smell of student’s tears and sweat, from their years of
 mental and physical hardships. The gym, equipped with the latest technology gives students an opportunity to improve
 their mental and physical health. There are little to no students to be seen. The air smells particularly pungent
-today, but you do not take notice of it. You suddenly remember that you used the treadmill during one of your many
-escapades to focus on studying. The quad, where you began your journey, lies to the west.
+today, but you do not take notice of it. You suddenly remember that you used your lucky pen to jot down your workout
+routine yesterday. The quad, where you began your journey, lies to the west.
 descriptions end
 ----------
 3-CAFETERIA
@@ -38,7 +38,7 @@ You enter the cafeteria. To the north, you'll find the quad, and to the south li
 You enter the cafeteria. The cafeteria is a safe haven for students, who take breaks in between studying to grab a
 quick, but delicious bite. The cafeteria accommodates and serves all, regardless of any dietary restrictions, making it
 one of your favourite places on campus. While pondering, you think the only item it does not serve is a good home
-cooked meal, which you have not had in a while.
+cooked meal, which you have not had in a while. The air smells of freshly roasted coffee beans.
 descriptions end
 ----------
 4-BAHEN
@@ -47,10 +47,9 @@ You see a TA lying down clutching a key, but she's too tired to want to talk to 
 The TA, now rejuvenated by some coffee, is too focused on a difficult proof question to be paying attention to the key.
 You arrive at the Bahen. The cafeteria is up north, while down south is the Queen's Park.
 You arrive at the Bahen Centre for Information Technology Building. You are surrounded by bulletin boards announcing
-upcoming hackathons,coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
-technological exploration.You notice your fellow peers are frantically preparing for the exam, while you are unsure if
-you will even be able toattend the exam. Out of all the students, one student in particular catches your attention as
-they are crying alone inthe corner of the foyer. The cafeteria is up north, while down south is the Queen's Park.
+upcoming hackathons, coding competitions, and guest seminars, reflecting the vibrant energy of collaboration and
+technological exploration. You remember that this was where you last remember taking out your cheat sheet to show your
+peers. The cafeteria is up north, while down south is the Queen's Park.
 descriptions end
 ----------
 5-EXAM HALL
@@ -67,12 +66,13 @@ descriptions end
 6-Queen's Park
 4 5
 A strange man runs up to you and offers a weird potion if you tell him his favorite fruit (Hint: your friend might know)
-The strange man, while running around with 2 lemons in his hands shouts pro-lemon propoganda from the top of his lungs..
+The strange man, while running around with 2 lemons in his hands shouts pro-lemon propoganda from the top of his lungs
 You enter Queen's Park. Bahen is up north, and west contains queen's park. Towards east seems to be a mystery...
 The sounds of birds envelopes your ears. The park buzzes with activity as student shuffle around. During your insane
 studying journey last night, you remember you went to Queen's Park for a change in environment. As you try to remember
-what happened, you notice a faint aroma of freshly squeezed lemonade lingering in the air. Then you remember that you
-left the cheat sheet here while u were stopping to admire the sunset yesterday. Bahen is positioned in the north, and
+what happened, you notice a faint aroma of freshly squeezed lemonade lingering in the air. But wait, what's this?
+You see a perfectly cartoonish looking piece of cheese lying under a box raised by a stick. You admire the trap, but
+then realize that since you are not a rat, it probably wouldn't work on you. Bahen is positioned in the north, and
 to the west, you'll find the exam hall. Towards the east seems to be a mystery...
 descriptions end
 ----------
