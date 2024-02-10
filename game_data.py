@@ -320,15 +320,8 @@ class World:
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
         Initialize a new World for a text adventure game, based on the data in the given open files.
-        """
 
-        self.map = self.load_map(map_data)
-        self.locations_list = []
-        self.item_list = []
-        ending_line = ""
-
-        '''
-
+        First while loop:
         parses through the locations.txt file and creates a location object for every location.
         the format for the location.txt file goes:
 
@@ -341,7 +334,22 @@ class World:
         [descriptions end]      <---- This is to signify long descriptions end
         [----------]            <----- if this is locations end, the while loop breaks
 
-        '''
+        Second while loop:
+        parses through the items.txt file and creates a item/consumable object for every item.
+        the format for the items.txt file goes:
+
+        [name of item]_[item id]
+        [type of effect]_[effect application text]_[effect change value]  <-- This will just be - if its not consumable
+        [Starting location id]
+        [Ending location id]
+        [----------]            <----- if this is items end, the while loop breaks
+        """
+
+        self.map = self.load_map(map_data)
+        self.locations_list = []
+        self.item_list = []
+        ending_line = ""
+
         while ending_line != "locations end":
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
@@ -363,18 +371,6 @@ class World:
             self.locations_list.append(location)
             ending_line = self.read_file_line(location_data)
 
-        """
-
-        parses through the items.txt file and creates a item/consumable object for every item.
-        the format for the items.txt file goes:
-
-        [name of item]_[item id]
-        [type of effect]_[effect application text]_[effect change value]  <-- This will just be - if its not consumable
-        [Starting location id]
-        [Ending location id]
-        [----------]            <----- if this is items end, the while loop breaks
-
-        """
         while ending_line != "items end":
             l1 = self.read_file_line(items_data).split("_")
             consumable = self.read_file_line(items_data)
