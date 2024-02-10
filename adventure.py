@@ -11,6 +11,12 @@ from game_data import World, Player, Consumable
 def format_and_print(inside_text: str) -> None:
     """
     This function puts everything in between two seperator lines. This improves game readability.
+
+    >>> text = 'hello there'
+    >>> format_and_print(text)
+    ------------------------------------------------
+    hello there
+    ------------------------------------------------
     """
     print(f"------------------------------------------------\n{inside_text}"
           f"\n------------------------------------------------")
