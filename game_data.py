@@ -286,6 +286,11 @@ class Player:
 class Consumable(Item):
     """
     Sub-Class for the consumable items
+
+    Instance Attributes:
+        - properties: property of the consumable item
+    Representation Invariants:
+        - self.properties != []
     """
     properties: list[str]
 

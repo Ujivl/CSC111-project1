@@ -12,8 +12,8 @@ descriptions end
 -1
 
 
-You are in the quad, to the east lies the gym, south houses the cafeteria, and the west contains the library.
-You are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! Around
+you are in the quad, to the east lies the gym, south houses the cafeteria, and the west contains the library.
+you are standing in the middle of the quad. You need to act quickly or else you might not make it to your exam! around
 you are multiple buildings where you spent last night studying for your exam. your friend is sitting on a bench,
 Looking through thEir belongings and Making sure they didn't fOrget their t-card, cheat sheet, and lucky peNcil.
 descriptions end
