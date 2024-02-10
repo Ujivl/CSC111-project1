@@ -77,6 +77,8 @@ descriptions end
 ----------
 7-mysterious alley way
 7
+rat
+rat
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 You have entered the random room that we have not decided what to do with lol. Queen's Park is to the west.
 descriptions end

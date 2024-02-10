@@ -102,9 +102,12 @@ class Location:
     brief_intro: str
     long_intro: str
     been_here: bool = False
+    starting_dialogue: str
+    ending_dialogue: str
+    finished_quest: bool = False
 
-    def __init__(self, name: str, location_number: int, item_ids: list[str],
-                 brief_intro: str, long_intro: str) -> None:
+    def __init__(self, name: str, location_number: int, item_ids: list[str], starting_dialogue: str,
+                 ending_dialogue: str, brief_intro: str, long_intro: str) -> None:
         """Initialize a new location.
         """
         self.name = name
@@ -112,6 +115,8 @@ class Location:
         self.location_number = location_number
         self.brief_intro = brief_intro
         self.long_intro = long_intro
+        self.starting_dialogue = starting_dialogue
+        self.ending_dialogue = ending_dialogue
 
         # NOTES:
         # Data that could be associated with each Location object:
@@ -136,6 +141,10 @@ class Location:
         has been to the location before.
 
         """
+        if self.finished_quest:
+            dialogue = self.ending_dialogue
+        else:
+            dialogue = self.starting_dialogue
 
         items = "items in this location: " + (", ".join([items[x] for x in self.item_ids if x != -1]))
 
@@ -143,10 +152,10 @@ class Location:
             items = "There are currently no items in this location"
 
         if self.been_here:
-            return f"{self.brief_intro} \n\n{items}"
+            return f"{self.brief_intro} \n\n{dialogue} \n\n{items}"
         else:
             self.been_here = True
-            return f"{self.long_intro} \n{items}"
+            return f"{self.long_intro} \n{dialogue} \n\n{items}"
 
     def add_item_id(self, item_id: int) -> None:
         """
@@ -289,6 +298,8 @@ class World:
             detailed_description = ""
             location = Location(l1[1], int(l1[0]),
                                 self.read_file_line(location_data).split(" "),
+                                self.read_file_line(location_data),
+                                self.read_file_line(location_data),
                                 self.read_file_line(location_data),
                                 "")
 
