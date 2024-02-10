@@ -418,12 +418,3 @@ class World:
             if location_number == i.location_number:
                 return i
         return None
-
-
-"""
-w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-print(w.map)
-loc = w.get_location(3, 2)
-print(loc.location_number)
-print(w.item_list[4].name)
-"""
