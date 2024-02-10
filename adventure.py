@@ -19,9 +19,8 @@ TO DO LIST:
 
 
 """
-
-from game_data import World, Player, Consumable
 from pygame import mixer
+from game_data import World, Player, Consumable
 
 
 def format_and_print(inside_text: str) -> None:
@@ -67,7 +66,7 @@ if __name__ == "__main__":
     mixer.init()
     mixer.music.load('stranger-things-124008.mp3')
     mixer.music.set_volume(0.2)
-    mixer.music.play(1)
+    mixer.music.play(-1)
 
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
@@ -193,3 +192,17 @@ if __name__ == "__main__":
     if p.victory:
         print("\n\n\n\n")
         format_and_print("CONGRATULAIONS!!! you managed to write the exam in time and ace it!")
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod(verbose=True)
+
+    # When you are ready to check your work with python_ta, uncomment the following lines.
+    # (In PyCharm, select the lines below and press Ctrl/Cmd + / to toggle comments.)
+    # You can use "Run file in Python Console" to run both pytest and PythonTA,
+    # and then also test your methods manually in the console.
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120
+    })

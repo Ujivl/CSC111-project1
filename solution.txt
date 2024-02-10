@@ -2,30 +2,47 @@ impossible
 go south
 go south
 pick up cheat sheet
+inventory
 go north
+score
 pick up coffee
+score
+inventory
 go south
 drop coffee
+inventory
 pick up library key
+inventory
 go south
 lemon
 pick up weird potion
+inventory
 go east
 pick up regular pen
+inventory
 go west
 go north
 go north
 pick up coffee
+inventory
 use coffee
+inventory
 go north
 go west
 drop library key
+inventory
 pick up t-card
+inventory
 go east
 go east
 drop regular pen
+inventory
 pick up lucky pen
+inventory
 use weird potion
+inventory
 drop t-card
+inventory
 drop cheat sheet
+inventory
 drop lucky pen
