@@ -1,0 +1,31 @@
+play
+go south
+go south
+pick up cheat sheet
+go north
+pick up coffee
+go south
+drop coffee
+pick up library key
+go south
+lemon
+pick up weird potion
+go east
+pick up regular pen
+go west
+go north
+go north
+pick up coffee
+use coffee
+go north
+go west
+drop library key
+pick up t-card
+go east
+go east
+drop regular pen
+pick up lucky pen
+use weird potion
+drop t-card
+drop cheat sheet
+drop lucky pen
