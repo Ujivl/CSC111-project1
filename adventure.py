@@ -95,7 +95,6 @@ if __name__ == "__main__":
 
         if p.max_moves == 0:
             format_and_print("GAME OVER: You have exceeded the maximum number of moves.")
-            mixer.music.stop()
             break
 
         if "go " in choice and choice[3:] in directions:
@@ -111,7 +110,6 @@ if __name__ == "__main__":
 
         elif choice_in_possible_actions and choice == "quit":
             format_and_print("THANK YOU FOR PLAYING!!")
-            mixer.music.stop()
             break
 
         elif choice_in_possible_actions and choice == "look":
@@ -188,6 +186,8 @@ if __name__ == "__main__":
 
         else:
             format_and_print("what are you yappin about bro")
+
+    mixer.music.stop()
 
     if p.victory:
         print("\n\n\n\n")
