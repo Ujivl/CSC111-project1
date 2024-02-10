@@ -205,10 +205,15 @@ class Player:
     Representation Invariants:
         - self.max_moves > 0
     """
-
+    x: int
+    y: int
+    victory = False
+    inventory: list[Item] = []
     score: int = 0
+    difficulty: str = "easy"
+    max_moves: int
 
-    def __init__(self, x: int, y: int) -> None:
+    def __init__(self, x: int, y: int, difficulty: str) -> None:
         """
         Initializes a new Player at position (x, y).
         """
@@ -218,7 +223,16 @@ class Player:
         self.inventory = []
         self.victory = False
         self.score = 0
-        self.max_moves = 100
+        self.difficulty = difficulty
+        if difficulty == "easy":
+            self.max_moves = 50
+        elif difficulty == "medium":
+            self.max_moves = 30
+        elif difficulty == "hard":
+            self.max_moves = 15
+        else:
+            self.max_moves = 10
+
 
     def edit_inventory(self, item: Item, add_remove: str) -> bool:
         """

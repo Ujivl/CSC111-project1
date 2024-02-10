@@ -35,12 +35,11 @@ def format_and_print(inside_text: str) -> None:
 
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(2, 1)  # TODO: file dependent
-    dictionary = {7: 0, 6: 2, 3: 6, 5: 5}
     directions = {"north": (0, -1), "east": (1, 0), "south": (0, 1), "west": (-1, 0)}
     possible_actions = ["look", "inventory", "score", "quit", "pick up", "drop", "use"]
-    winning_location = w.get_location(1, 4)  # TODO: file dependent
+    winning_location = w.get_location(1, 4)
     winning_items = {item for item in w.item_list if item.target_position == winning_location.location_number}
+    dependent_items = {7: 0, 6: 2, 3: 6, 5: 5}
     items_in_world = [item.name for item in w.item_list]
     choice = ""
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -53,12 +52,14 @@ if __name__ == "__main__":
                      "(drop [item name]) command, which you can use to fulfill npc quests. Some items are usable, so\n"
                      "make sure to take advantage of that by using the (use [item name]) command. Lastly, if you've \n"
                      "had enough of our game, you can use the (quit) command to exit the game. If you are ready to \n"
-                     "continue, type play in the prompt given!")
+                     "continue, pick your difficulty: [easy] [medium] [hard] [impossible]")
 
-    while choice != "play":
+    while choice not in ["easy", "medium", "hard", "impossible"]:
         choice = input("Enter action: ").lower()
-        if choice != "continue":
+        if choice not in ["easy", "medium", "hard", "impossible"]:
             format_and_print("thats not what we asked you to type!")
+
+    p = Player(2, 1, choice)
 
     print("\n\n\n\n\n\n\n\n\n\n\n\n")
     format_and_print("LETS BEGIN!")
@@ -66,7 +67,7 @@ if __name__ == "__main__":
     mixer.init()
     mixer.music.load('stranger-things-124008.mp3')
     mixer.music.set_volume(0.2)
-    mixer.music.play(-1)
+    mixer.music.play(1)
 
     location = w.get_location(p.x, p.y)
     format_and_print(f"YOU ARE CURRENTLY AT {location.name}. (You have {p.max_moves} moves left)"
@@ -154,9 +155,9 @@ if __name__ == "__main__":
                 location.add_item_id(item_id)
                 format_and_print(f"you have dropped the following item: {choice[5:]}")
 
-                if location.location_number == w.item_list[item_id].target_position and item_id in dictionary:
+                if location.location_number == w.item_list[item_id].target_position and item_id in dependent_items:
                     location.finished_quest = True
-                    w.item_list[dictionary[item_id]].can_pick_up = True
+                    w.item_list[dependent_items[item_id]].can_pick_up = True
                     location.remove_item_id(item_id)
                 elif location.location_number == w.item_list[item_id].target_position:
                     location.finished_quest = True

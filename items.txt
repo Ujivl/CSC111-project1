@@ -17,7 +17,7 @@ t-card_2
 20
 -------
 coffee_3
-moves_you feel energized for some reason, gaining some speed_10
+moves_you feel energized for some reason, gaining some speed_5
 3
 4
 20
@@ -32,7 +32,7 @@ suspicious cheese_5
 moves_eating the cheese fills you with dread, but the people around you have been almost frozen in time._1000
 6
 7
-1000
+100
 -------
 library key_6
 -
