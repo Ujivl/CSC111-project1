@@ -215,7 +215,7 @@ if __name__ == "__main__":
             # runs if the player answers correctly
             if choice == "lemon":
                 format_and_print("The strange man says: mmmmmm delicious and sour! you really do know my favourite\n"
-                                 " fruit i'll leave this concoction here for you, drinking it will take you where you\n"
+                                 "fruit i'll leave this concoction here for you, drinking it will take you where you\n"
                                  "need to be!!!!!")
                 w.item_list[4].can_pick_up = True
                 location.finished_quest = True
