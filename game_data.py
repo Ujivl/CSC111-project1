@@ -60,6 +60,8 @@ class Item:
         self.start_position = start
         self.target_position = target
         self.target_points = target_points
+        if item_id == 1 or item_id == 5 or item_id == 7:
+            self.can_pick_up = True
 
     def return_points(self, location_id: int) -> int:
         """
