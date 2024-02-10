@@ -29,6 +29,7 @@ class Item:
         - start_position: starting location of the item on the map
         - target_position: the location where the item is supposed to end up in on the map
         - target_points: idk what this does uji lol
+        - can_pick_up: a boolean indicating whether you can pick up an item or not
 
     Representation Invariants:
         - self.name != ""
@@ -87,10 +88,11 @@ class Location:
         - name: name of the location
         - characters: characters within the location
         - gold: amount of gold present in the location
-        - been_here: a boolean indicating whether the player has visited the location
         - brief_intro: a short introduction to the location
         - long_intro: a more detailed description of the location
         - location_number: a unique identifier for the location
+        - been_here: a boolean indicating whether the player has visited the location
+        - finished_quest: a boolean indicating whether the player has completed the quest
     Representation Invariants:
         - self.gold >= 0
         - location_number >= 0
@@ -170,7 +172,7 @@ class Location:
 
     def remove_item_id(self, item_id: int) -> None:
         """
-        removes an item id from a location
+        removes an item id from a location, if the item exists
 
         >>> location = Location('bahen', 6, ["5", "6"], "random brief intro", "random long intro", "", "")
         >>> location.remove_item_id(3)
@@ -243,6 +245,22 @@ class Player:
     def show_inventory(self) -> str:
         """
         prints out all the items in the inventory in a neat format.
+
+        >>> player = Player(0, 0)
+        >>> item1 = Item('book', 2, 1, 4, 50)
+        >>> item2 = Item('choco', 2, 1, 4, 50)
+        >>> item3 = Item('cheat', 2, 1, 4, 50)
+        >>> player.edit_inventory(item1, 'a')
+        True
+        >>> player.edit_inventory(item2, 'a')
+        True
+        >>> print(player.show_inventory())
+        [book]
+        [choco]
+        <BLANKLINE>
+        >>> player = Player(0, 0)
+        >>> player.show_inventory()
+        'you currently have no items in your inventory'
         """
         if not self.inventory:
             return "you currently have no items in your inventory"
@@ -346,7 +364,7 @@ class World:
 
     def read_file_line(self, data: TextIO) -> str:
         """
-        returns a line of the data file without the newline (made for more neat code).
+        Returns a line of the data file without the newline (made for more neat code).
         """
         return data.readline().strip()
 
@@ -360,6 +378,8 @@ class World:
         then load_map should assign this World object's map to be [[1, 2, 5], [3, -1, 4]].
 
         Return this list representation of the map.
+
+
         """
         final_list = []
         for line in map_data:
