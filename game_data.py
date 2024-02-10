@@ -327,11 +327,11 @@ class World:
         self.item_list = []
         ending_line = ""
 
-        """
-        
+        '''
+
         parses through the locations.txt file and creates a location object for every location.
         the format for the location.txt file goes:
-        
+
         [location number]-[location name]
         [list of items in location]
         [Starting quest dialogue]
@@ -340,8 +340,8 @@ class World:
         [long description for location (can be multiple lines)]
         [descriptions end]      <---- This is to signify long descriptions end
         [----------]            <----- if this is locations end, the while loop breaks
-        
-        """
+
+        '''
         while ending_line != "locations end":
             l1 = self.read_file_line(location_data).split("-")
             detailed_description = ""
@@ -369,7 +369,7 @@ class World:
         the format for the items.txt file goes:
 
         [name of item]_[item id]
-        [type of effect]_[effect application text]_[effect change value]  <-- This will just be - if its not consumable 
+        [type of effect]_[effect application text]_[effect change value]  <-- This will just be - if its not consumable
         [Starting location id]
         [Ending location id]
         [----------]            <----- if this is items end, the while loop breaks

@@ -17,22 +17,35 @@
 
 \begin{enumerate}
 
-\item Describe your enhancement \#1 here
+\item Describe your enhancement \#1 Music
 	\begin{itemize}
-	\item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-	\item Complexity level (choose from low/medium/high):
-	\item Reasons you believe this is the complexity level (e.g. mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
-	% Feel free to add more subheadings if you need
+	\item Complexity level: low
+	\item Music is played throughout the text game. While playing our game, a soundtrack consistently plays from start to finish, infinitely looping unless the player chooses to quit, runs out of moves, or wins the game. This enhancement was a low complexity enhancement we decided to include in our game to make it more fun and interesting. The music we selected perfectly encapsulates the tone of our game and when the music loops, it feels natural rather than abrupt which was a purposeful decision. We believe this was a low complexity enhancement as the built in methods from pygame were relatively straightforward and easy to understand. The only trouble we faced was learning how to loop the music an infinite amount of times, which was resolved once we knew we had to pass -1 as an argument in the mixer.music.play built in method.
 	\end{itemize}
 
-% Uncomment below section if you have more enhancements; copy-paste as many times as needed
-%\item Describe your enhancement here
-%	\begin{itemize}
-%	\item Basic description of what the enhancement is:
-%	\item Complexity level (low/medium/high):
-%	\item Reasons you believe this is the complexity level (e.g. mention implementation details 
-%	% Feel free to add more subheadings if you feel the need
-%	\end{itemize}
+\item Describe your enhancement \#2 Difficulty
+	\begin{itemize}
+	\item Complexity level: low
+    \item Difficulty provides the player with options to select the difficulty level they want to play the game in. While playing the game, depending on the difficulty level the user chooses, the max number of moves becomes restricted. There are 4 difficulty levels with easy giving the player 50 moves to finish the game, medium giving 30, hard giving 15, and impossible giving 10 (essentially a perfect run). This enhancement was a low complexity enhancement as we simply had to change the max moves attribute inside the player class to change depending on the user input at the start of the game.
+	\end{itemize}
+
+\item Describe your enhancement \#3 Consumables
+	\begin{itemize}
+	\item Complexity level: high
+    \item Consumables are items in our game which can be used by the player to give certain advantages. Consumables are a child class of the superclass Item, and they differ from regular items because they have the instance attribute ‘properties’. The property attribute either gives the player more available moves, or teleports the player directly to the Exam hall, which saves a lot of time and player moves. This enhancement was a medium complexity enhancement which we decided to include in the game to give more options to the player. We believe this was a medium complexity enhancement because it adds a layer of depth to the game, making it more strategic. The implementation required us to change the item.txt as we had to now differentiate between regular and consumable items while parsing through the file. As a result, this required a change to the adventure file as we needed to account for the command ‘use’ and when it was appropriate for the player to do this action. In addition, in the class itself, we had to differentiate between items that teleport the player and items that give the player more moves.
+	\end{itemize}
+
+\item Describe your enhancement \#4 NPC actions text
+	\begin{itemize}
+	\item Complexity level: medium
+	\item NPC action text gives an output to the player along with the description when they are in a location, depending on if the fetch quest is completed or not. We added this to the game to give the user a deeper level of immersion and wanted to make the character dialogue dependent on certain conditions. This enhancement was a difficult complexity enhancement since the output of the text is completely dependent on the player's actions. We implemented this by adding 2 instance attributes, starting dialogue and ending dialogue to the locations class. In addition, We had a lot of challenges implementing this as we initially tried to create a character class and parse through starting and ending dialogue, but that introduced multiple issues with our fetch quests as they were dependent on the locations.txt. Eventually, we decided to include the starting and ending dialogue in the locations class which simplified a lot of the code, both in the adventure.py and the game_data.py.
+	\end{itemize}
+
+\item Describe your enhancement \#5 Fetch quest implementation
+	\begin{itemize}
+	\item Complexity level: high
+    \item akjwfbawkjfnawkjnawkjfnawkjnaw
+	\end{itemize}
 
 \end{enumerate}
 
