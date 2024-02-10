@@ -1,4 +1,4 @@
-play
+impossible
 go south
 go south
 pick up cheat sheet
